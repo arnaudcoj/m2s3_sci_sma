@@ -1,6 +1,7 @@
 import json
 
-import Environment
+from Environment import *
+from SMA import *
 
 class Main(object):
     """docstring for Main"""
@@ -8,7 +9,6 @@ class Main(object):
         super(Main, self).__init__()
         self.load_properties_from_json(fileName)
         self.createEnvironment()
-        self.populate()
         self.createSMA()
 
     def load_properties_from_json(self, fileName):
@@ -27,7 +27,6 @@ class Main(object):
         self.environment = Environment(gridSizeX, gridSizeY, torus)
 
     def createSMA(self):
-        environment = self.data["environment"]
         delay = self.data["delay"]
         scheduling = self.data["scheduling"]
         nbTicks = self.data["nbTicks"]
@@ -35,10 +34,14 @@ class Main(object):
         nbParticles = self.data["nbParticles"]
         seed = self.data["seed"]
 
-        self.SMA = SMA(environment, delay, scheduling, nbTicks, trace, nbParticles, seed)
+        self.SMA = SMA(self.environment, delay, scheduling, nbTicks, trace, nbParticles, seed)
+
+    def run(self):
+        self.SMA.run()
 
 def main():
     main = Main("properties.json")
+    main.run()
 
 if __name__ == '__main__':
     main()
