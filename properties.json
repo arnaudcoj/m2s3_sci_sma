@@ -1,4 +1,15 @@
 {
   "gridSizeX":4,
-  "gridSizeY":4
+  "gridSizeY":4,
+  "canvasSizeX":400,
+  "canvasSizeY":400,
+  "boxSize":0,
+  "delay":0,
+  "scheduling":0,
+  "nbTicks":0,
+  "grid":"True",
+  "trace":"True",
+  "seed":0,
+  "refresh":60,
+  "nbParticles":5
 }
