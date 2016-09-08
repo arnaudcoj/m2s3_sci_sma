@@ -38,7 +38,7 @@ class Environment(object):
             print("\n|", end="")
             for i in range(self.getNbCol()):
                 if self.grid[i][j] != None:
-                    print("X", end="")
+                    print(self.grid[i][j].name, end="")
                 else:
                     print(" ", end="")
                 print("|", end="")
