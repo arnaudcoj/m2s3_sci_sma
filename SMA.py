@@ -1,6 +1,7 @@
 import time
+from Observable import *
 
-class SMA(object):
+class SMA(Observable):
     """docstring for SMA."""
     def __init__(self, environment, agentlist, delay, scheduling, nbTicks, trace):
         super(SMA, self).__init__()
@@ -19,5 +20,5 @@ class SMA(object):
                 agent.decide()
                 agent.update()
                 if self.trace: print("agent", agent)
-                self.environment.printASCII()
+                self.emitSignal("modelUpdated")
             time.sleep(self.delay / 1000.0)
