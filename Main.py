@@ -7,11 +7,13 @@ class Main(object):
     """docstring for Main"""
     def __init__(self, fileName):
         super(Main, self).__init__()
-        self.load_properties_from_json(fileName)
+        self.loadPropertiesFromJSON(fileName)
         self.createEnvironment()
-        self.createSMA()
+        agentlist = []
+        self.populate(agentlist)
+        self.createSMA(agentlist)
 
-    def load_properties_from_json(self, fileName):
+    def loadPropertiesFromJSON(self, fileName):
         dataFile = open(fileName, 'r')
         try:
             self.data = json.loads(dataFile.read())
@@ -26,21 +28,23 @@ class Main(object):
 
         self.environment = Environment(gridSizeX, gridSizeY, torus)
 
-    def createSMA(self):
+    def populate(self, agentlist):
+        seed = self.data["seed"]
+        nbParticles = self.data["nbParticles"]
+
+
+        print(nbParticles, "particles have been created and placed on the grid with the seed :", seed)
+
+    def createSMA(self, agentlist):
         delay = self.data["delay"]
         scheduling = self.data["scheduling"]
         nbTicks = self.data["nbTicks"]
         trace = self.data["trace"]
-        nbParticles = self.data["nbParticles"]
-        seed = self.data["seed"]
 
-        self.SMA = SMA(self.environment, delay, scheduling, nbTicks, trace, nbParticles, seed)
+        self.SMA = SMA(self.environment, agentlist, delay, scheduling, nbTicks, trace)
 
     def run(self):
         self.SMA.run()
-
-    def populate(self):
-        """ populate """
 
 def main():
     main = Main("properties.json")
