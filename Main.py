@@ -2,7 +2,7 @@ import json
 
 from Environment import *
 from SMA import *
-#from Agent import *
+from Agent import *
 
 class Main(object):
     """docstring for Main"""
@@ -39,7 +39,7 @@ class Main(object):
         print(nbParticles, "particles have been created and placed on the grid with the seed :", seed)
 
     def createAgent(self, agentlist, x, y):
-        agent = x + y
+        agent = Agent(self.environment, x, y, "Yellow", self.data["torus"])
         agentlist.append(agent)
         self.environment.setInCell(x, y, agent)
 

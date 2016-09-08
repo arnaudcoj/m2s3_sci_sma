@@ -25,10 +25,10 @@ class Agent(object):
 
             self.pasY = newPasY
             self.pasX = newPasX
-        elif !self.torus :
-            if (posY + self.pasY < 0 || posY + self.pasY > environment.getNbRow) :
+        elif not self.torus :
+            if (posY + self.pasY < 0) or (posY + self.pasY > environment.getNbRow) :
                 self.pasX -= self.pasX
-            if (posX + self.pasX < 0 || posX + self.pasX > environment.getNbCol) :            
+            if (posX + self.pasX < 0) or (posX + self.pasX > environment.getNbCol) :            
                 self.pasY -= self.pasY
 
     def find_nextCell():
@@ -61,5 +61,5 @@ class Agent(object):
             elif self.posX + self.pasX > environment.getNbCol : 
                 self.posX = 0
         else :
-        	self.posY += self.pasY
+            self.posY += self.pasY
             self.posX += self.pasX
