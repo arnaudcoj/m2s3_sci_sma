@@ -12,11 +12,12 @@ class Agent(object):
         self.pasX = 1
 
     def update(self):
-    	self.decide()
-    	self.move()
+        print("update")
+        self.decide()
+        self.move()
 
     def decide(self):
-        nextCell = self.find_nextCell()
+        nextCell = self.findNextCell()
         if nextCell != None :
             newPasY = nextCell.agent.pasY
             newPasX = nextCell.agent.pasX
@@ -27,42 +28,49 @@ class Agent(object):
             self.pasY = newPasY
             self.pasX = newPasX
         elif not self.torus :
-            if (posY + self.pasY < 0) or (posY + self.pasY > self.environment.getNbRow) :
+            if (posY + self.pasY < 0) or (posY + self.pasY >= self.environment.getNbRow) :
                 self.pasX -= self.pasX
-            if (posX + self.pasX < 0) or (posX + self.pasX > self.environment.getNbCol) :            
+            if (posX + self.pasX < 0) or (posX + self.pasX >= self.environment.getNbCol) :            
                 self.pasY -= self.pasY
 
-    def find_nextCell(self):
+    def findNextCell(self):
         nextCellY = self.posY + self.pasY
         nextCellX = self.posX + self.pasX
+        outOfBound = False
 
-        if self.torus :
-            if self.posY + self.pasY < 0 :
-                self.posY = self.environment.getNbRow
-            elif self.posY + self.pasY > self.environment.getNbRow() : 
-                self.posY = 0
+        if (self.posY + self.pasY < 0) or (self.posY + self.pasY >= self.environment.getNbRow()) or (self.posX + self.pasX < 0) or (self.posX + self.pasX >= self.environment.getNbCol()) :
+            if self.torus :
+                if self.posY + self.pasY < 0 :
+                    nextCellY = self.environment.getNbRow()
+                elif self.posY + self.pasY >= self.environment.getNbRow() : 
+                    nextCellY = 0
 
-            if self.posX + self.pasX < 0 :
-                self.posX = self.environment.getNbCol
-            elif self.posX + self.pasX > self.environment.getNbCol() : 
-                self.posX = 0
-
-        nextCell = self.environment.grid[nextCellY][nextCellX]
+                if self.posX + self.pasX < 0 :
+                    nextCellX = self.environment.getNbCol()
+                elif self.posX + self.pasX >= self.environment.getNbCol() : 
+                    nextCellX = 0
+            else :
+                outOfBound = True 
+             
+        if outOfBound :
+            nextCell = None
+        else :
+            nextCell = self.environment.grid[nextCellY][nextCellX]
 
 
     def move(self):
-        newPosY = self.posY
-        newPosX = self.posX
+        newPosY = self.posY + self.pasY
+        newPosX = self.posX + self.pasX
 
         if self.torus :
             if newPosY + self.pasY < 0 :
-                newPosY = self.environment.getNbRow
-            elif newPosY + self.pasY > self.environment.getNbRow() : 
+                newPosY = self.environment.getNbRow()
+            elif newPosY + self.pasY >= self.environment.getNbRow() : 
                 newPosY = 0
 
             if newPosX + self.pasX < 0 :
-                newPosX = self.environment.getNbCol
-            elif newPosX + self.pasX > self.environment.getNbCol() : 
+                newPosX = self.environment.getNbCol()
+            elif newPosX + self.pasX >= self.environment.getNbCol() : 
                 newPosX = 0
         else :
             newPosY += self.pasY

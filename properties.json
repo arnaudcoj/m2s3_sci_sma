@@ -12,5 +12,5 @@
   "trace":"True",
   "seed":"ckfrt",
   "refresh":2,
-  "nbParticles":5
+  "nbParticles":2
 }
