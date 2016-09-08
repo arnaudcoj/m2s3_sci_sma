@@ -10,6 +10,9 @@ class Environment(object):
             self.grid.append([None] * gridSizeY)
         print("The grid of size", gridSizeX, gridSizeY, "has successfully been created.")
 
+    def setInCell(self, x, y, obj):
+        self.grid[x][y] = obj
+
     def getFreeCells(self):
         freeCells = []
         for i in range(self.getNbCol()):
@@ -25,8 +28,6 @@ class Environment(object):
         return len(self.grid)
 
     def printASCII(self):
-        print(self.getNbCol(), self.getNbRow())
-
         #First Line
         print("+", end="")
         for i in range(self.getNbCol()):
@@ -36,7 +37,7 @@ class Environment(object):
         for j in range(self.getNbRow()):
             print("\n|", end="")
             for i in range(self.getNbCol()):
-                if self.grid[i][j] :
+                if self.grid[i][j] != None:
                     print("X", end="")
                 else:
                     print(" ", end="")

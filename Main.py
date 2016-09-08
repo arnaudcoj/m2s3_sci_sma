@@ -2,6 +2,7 @@ import json
 
 from Environment import *
 from SMA import *
+#from Agent import *
 
 class Main(object):
     """docstring for Main"""
@@ -32,8 +33,15 @@ class Main(object):
         seed = self.data["seed"]
         nbParticles = self.data["nbParticles"]
 
+        self.createAgent(agentlist, 0, 1)
+        self.createAgent(agentlist, 2, 2)
 
         print(nbParticles, "particles have been created and placed on the grid with the seed :", seed)
+
+    def createAgent(self, agentlist, x, y):
+        agent = x + y
+        agentlist.append(agent)
+        self.environment.setInCell(x, y, agent)
 
     def createSMA(self, agentlist):
         delay = self.data["delay"]

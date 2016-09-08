@@ -12,10 +12,12 @@ class SMA(object):
         self.agentlist = agentlist
 
     def run(self):
+        self.environment.printASCII()
         for tick in range(1, self.nbTicks + 1):
+            if self.trace: print("Tick", tick, "on", self.nbTicks)
             for agent in self.agentlist:
                 #agent.decide()
                 #agent.update()
-                if self.trace: print("agent")
-            if self.trace: print("Tick", tick, "on", self.nbTicks)
+                if self.trace: print("agent", agent)
+            self.environment.printASCII()
             time.sleep(self.delay / 1000.0)
