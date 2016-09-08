@@ -1,4 +1,6 @@
 import json
+import sys
+import random
 
 from Environment import *
 from SMA import *
@@ -30,11 +32,34 @@ class Main(object):
         self.environment = Environment(gridSizeX, gridSizeY, torus)
 
     def populate(self, agentlist):
+        #Fetch data
         seed = self.data["seed"]
         nbParticles = self.data["nbParticles"]
 
-        self.createAgent(agentlist, 0, 1)
-        self.createAgent(agentlist, 2, 2)
+        #Check if there is a given seed
+        if seed == 0 or seed == "0" :
+            #if not, create a random seed
+            seed = random.randint(0, sys.maxsize)
+
+        #Initialize the random engine with the seed
+        random.seed(seed)
+
+        #Fetch the free cells from the environment
+        freeCells = self.environment.getFreeCells()
+
+        #Check if there are enough cells for each particle
+        if len(freeCells) < nbParticles :
+            print("Error ! There are more particles than free cells !")
+            return
+
+        #Shuffle the list
+        random.shuffle(freeCells)
+
+        #Pop a free cell from the list then create and place an agent in this cell
+        for i in range(nbParticles):
+            position = freeCells.pop()
+            self.createAgent(agentlist, position[0], position[1])
+            print("added particle", i, "on", nbParticles, "to position", position)
 
         print(nbParticles, "particles have been created and placed on the grid with the seed :", seed)
 
