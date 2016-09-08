@@ -8,7 +8,6 @@ class Environment(object):
         self.grid = []
         for i in range(gridSizeX):
             self.grid.append([None] * gridSizeY)
-        self.grid[0][1] = True
         print("The grid of size", gridSizeX, gridSizeY, "has successfully been created.")
 
     def getFreeCells(self):
