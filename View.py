@@ -14,7 +14,7 @@ class View(Observer):
 
     def onReceive(self, signal, emitter):
         if signal == "modelUpdated":
-            emitter.environment.printASCII()
+            #emitter.environment.printASCII()
             self.draw(emitter.environment.grid)
 
     def draw(self, environment):
@@ -27,4 +27,4 @@ class View(Observer):
 
                     '''marble'''
                     if environment[j][i]:
-                        self.canvas.create_oval(i * self.boxSize, j * self.boxSize, (i + 1) * self.boxSize, (j + 1 ) * self.boxSize, fill='yellow', width=0)
+                        self.canvas.create_oval(i * self.boxSize, j * self.boxSize, (i + 1) * self.boxSize, (j + 1 ) * self.boxSize, fill = 'green', width = 0)

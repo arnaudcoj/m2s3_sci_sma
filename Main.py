@@ -15,8 +15,8 @@ class Main(object):
         self.createEnvironment()
         agentlist = []
         self.populate(agentlist)
-        self.createSMA(agentlist)
         self.createWindow()
+        self.createSMA(agentlist)
         self.createView()
 
     def loadPropertiesFromJSON(self, fileName):
@@ -77,7 +77,7 @@ class Main(object):
         nbTicks = self.data["nbTicks"]
         trace = self.data["trace"]
 
-        self.SMA = SMA(self.environment, agentlist, delay, scheduling, nbTicks, trace)
+        self.SMA = SMA(self.window, self.environment, agentlist, delay, scheduling, nbTicks, trace)
 
     def createWindow(self):
         self.window = Tk()
@@ -89,8 +89,7 @@ class Main(object):
         self.SMA.addObserver(self.view)
 
     def run(self):
-        self.window.after(0, self.SMA.run())
-        self.window.mainloop()
+        self.SMA.run()
 
 def main():
     main = Main("properties.json")
