@@ -51,16 +51,25 @@ class Agent(object):
 
 
     def move(self):
-        if self.torus :
-            if self.posY + self.pasY < 0 :
-                self.posY = self.environment.getNbRow
-            elif self.posY + self.pasY > self.environment.getNbRow() : 
-                self.posY = 0
+        newPosY = self.posY
+        newPosX = self.posX
 
-            if self.posX + self.pasX < 0 :
-                self.posX = self.environment.getNbCol
-            elif self.posX + self.pasX > self.environment.getNbCol() : 
-                self.posX = 0
+        if self.torus :
+            if newPosY + self.pasY < 0 :
+                newPosY = self.environment.getNbRow
+            elif newPosY + self.pasY > self.environment.getNbRow() : 
+                newPosY = 0
+
+            if newPosX + self.pasX < 0 :
+                newPosX = self.environment.getNbCol
+            elif newPosX + self.pasX > self.environment.getNbCol() : 
+                newPosX = 0
         else :
-            self.posY += self.pasY
-            self.posX += self.pasX
+            newPosY += self.pasY
+            newPosX += self.pasX
+
+        self.environment.setInCell(self.posX, self.posY, None)
+        self.environment.setInCell(newPosX, newPosY, self)
+
+        self.posY = newPosY
+        self.posX = newPosX
