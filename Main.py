@@ -5,6 +5,7 @@ import random
 from Environment import *
 from SMA import *
 from Agent import *
+from View import *
 
 class Main(object):
     """docstring for Main"""
@@ -15,6 +16,7 @@ class Main(object):
         agentlist = []
         self.populate(agentlist)
         self.createSMA(agentlist)
+        self.createView()
 
     def loadPropertiesFromJSON(self, fileName):
         dataFile = open(fileName, 'r')
@@ -75,6 +77,10 @@ class Main(object):
         trace = self.data["trace"]
 
         self.SMA = SMA(self.environment, agentlist, delay, scheduling, nbTicks, trace)
+
+    def createView(self):
+        self.view = View()
+        self.SMA.addObserver(self.view)
 
     def run(self):
         self.SMA.run()
