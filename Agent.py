@@ -13,7 +13,6 @@ class Agent(object):
 
     def update(self):
         print("update")
-        self.decide()
         self.move()
 
     def decide(self):
@@ -41,13 +40,17 @@ class Agent(object):
         if (self.posY + self.pasY < 0) or (self.posY + self.pasY >= self.environment.getNbRow()) or (self.posX + self.pasX < 0) or (self.posX + self.pasX >= self.environment.getNbCol()) :
             if self.torus :
                 if self.posY + self.pasY < 0 :
+                    print("Y O")
                     nextCellY = self.environment.getNbRow()
                 elif self.posY + self.pasY >= self.environment.getNbRow() : 
+                    print("Y 1")
                     nextCellY = 0
 
                 if self.posX + self.pasX < 0 :
+                    print("X O")
                     nextCellX = self.environment.getNbCol()
                 elif self.posX + self.pasX >= self.environment.getNbCol() : 
+                    print("X 1")
                     nextCellX = 0
             else :
                 outOfBound = True 

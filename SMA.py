@@ -19,5 +19,5 @@ class SMA(object):
                 agent.decide()
                 agent.update()
                 if self.trace: print("agent", agent)
-            self.environment.printASCII()
+                self.environment.printASCII()
             time.sleep(self.delay / 1000.0)
