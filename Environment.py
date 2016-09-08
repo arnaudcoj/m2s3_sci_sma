@@ -2,7 +2,7 @@ class Environment(object):
     """docstring for Environment"""
     def __init__(self, gridSizeX, gridSizeY, torus):
         super(Environment, self).__init__()
-        self.init_grid(gridSizeX, gridSizeY)
+        self.init_grid(gridSizeX, gridSizeY, torus)
 
     def init_grid(self, gridSizeX, gridSizeY, torus):
         self.grid = []

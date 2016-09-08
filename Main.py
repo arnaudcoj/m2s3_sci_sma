@@ -1,6 +1,6 @@
 import json
 
-import Environment
+from Environment import Environment
 
 class Main(object):
     """docstring for Main"""
@@ -36,6 +36,9 @@ class Main(object):
         seed = self.data["seed"]
 
         self.SMA = SMA(environment, delay, scheduling, nbTicks, trace, nbParticles, seed)
+
+    def populate(self):
+        """ populate """
 
 def main():
     main = Main("properties.json")
