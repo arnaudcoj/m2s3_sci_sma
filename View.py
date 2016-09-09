@@ -19,6 +19,7 @@ class View(Observer):
 
     def draw(self, environment):
         if environment:
+            self.canvas.delete("all")
             for j in range(len(environment)):
                 for i in range(len(environment[j])):
                     '''grid'''
@@ -27,4 +28,4 @@ class View(Observer):
 
                     '''marble'''
                     if environment[j][i]:
-                        self.canvas.create_oval(i * self.boxSize, j * self.boxSize, (i + 1) * self.boxSize, (j + 1 ) * self.boxSize, fill = 'green', width = 0)
+                        self.canvas.create_oval(i * self.boxSize, j * self.boxSize, (i + 1) * self.boxSize, (j + 1 ) * self.boxSize, fill = 'blue', width = 0)
