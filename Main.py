@@ -81,6 +81,7 @@ class Main(object):
 
     def createWindow(self):
         self.window = Tk()
+        self.window.title("S.M.A")
         self.canvas = Canvas(self.window, width = self.data["canvasSizeX"], height = self.data["canvasSizeX"], background = 'yellow', bd=0, highlightthickness=0, relief='ridge')
         self.canvas.pack()
 
