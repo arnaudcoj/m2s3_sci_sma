@@ -26,7 +26,7 @@ class View(Observer):
                 for i in range(len(environment[j])):
                     '''grid'''
                     if self.grid:
-                        self.canvas.create_rectangle(i * self.boxSize, j * self.boxSize, (i + 1) * self.boxSize, (j + 1 ) * self.boxSize)
+                        self.canvas.create_rectangle(i * self.boxSize, j * self.boxSize, (i + 1) * self.boxSize, (j + 1 ) * self.boxSize, fill = 'white', width = 1)
 
                     '''marble'''
                     if environment[j][i]:
