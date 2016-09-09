@@ -70,7 +70,7 @@ class Main(object):
         print(nbParticles, "particles have been created and placed on the grid with the seed :", seed)
 
     def createAgent(self, agentlist, x, y):
-        agent = Agent(self.environment, x, y, "Yellow", self.data["torus"])
+        agent = Agent(self.environment, x, y, self.data["torus"])
         agentlist.append(agent)
         self.environment.setInCell(x, y, agent)
 

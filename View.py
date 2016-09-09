@@ -30,4 +30,4 @@ class View(Observer):
 
                     '''marble'''
                     if environment.grid[i][j]:
-                        self.canvas.create_oval(i * self.boxSize + self.margin, j * self.boxSize + self.margin, (i + 1) * self.boxSize - self.margin, (j + 1 ) * self.boxSize - self.margin, fill = 'blue', width = 0)
+                        self.canvas.create_oval(i * self.boxSize + self.margin, j * self.boxSize + self.margin, (i + 1) * self.boxSize - self.margin, (j + 1 ) * self.boxSize - self.margin, fill = environment.grid[i][j].color, width = 0)
