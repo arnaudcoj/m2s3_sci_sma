@@ -28,35 +28,40 @@ class Agent(object):
         self.pasY = pas[1]
 
     def update(self):
-        print("update")
         self.move()
 
     def decide(self):
         print("posX:",self.posX)
         print("posY:",self.posY)
         nextCoords = self.findNextCell()
+        print("nextCoords:", nextCoords)
         if(nextCoords != None) :
             nextCell = self.environment.grid[nextCoords[0]][nextCoords[1]]
             #There is an agent on the next cell
             if nextCell != None :
-                newPasY = nextCell.agent.pasY
+                print("occupied")
                 newPasX = nextCell.agent.pasX
+                newPasY = nextCell.agent.pasY
 
-                nextCell.agent.pasY = self.pasY
                 nextCell.agent.pasX = self.pasX
+                nextCell.agent.pasY = self.pasY
 
-                self.pasY = newPasY
                 self.pasX = newPasX
+                self.pasY = newPasY
         #the environment is not toric and the marble is on its edge
         else :
-            if (posY + self.pasY < 0) or (posY + self.pasY >= self.environment.getNbRow) :
-                self.pasX -= self.pasX
-            if (posX + self.pasX < 0) or (posX + self.pasX >= self.environment.getNbCol) :
-                self.pasY -= self.pasY
+            #the border is on the top or the bottom
+            if (self.posY + self.pasY < 0) or (self.posY + self.pasY >= self.environment.getNbRow()) :
+                print("None + Top / Bottom")
+                self.pasY = -self.pasY
+            #the border is on the left or the right
+            if (self.posX + self.pasX < 0) or (self.posX + self.pasX >= self.environment.getNbCol()) :
+                print("None + Left / Right")
+                self.pasX = -self.pasX
 
     def findNextCell(self):
-        nextCellY = self.posY + self.pasY
         nextCellX = self.posX + self.pasX
+        nextCellY = self.posY + self.pasY
 
         #the marble is on the edge of the environment
         if (self.posY + self.pasY < 0) or (self.posY + self.pasY >= self.environment.getNbRow()) or (self.posX + self.pasX < 0) or (self.posX + self.pasX >= self.environment.getNbCol()) :
@@ -79,37 +84,37 @@ class Agent(object):
             else :
                 return None
 
-        return (nextCellY, nextCellX)
+        return (nextCellX, nextCellY)
 
 
     def move(self):
-        newPosY = self.posY + self.pasY
+        print("pasX:",self.pasX)
+        print("pasY:",self.pasY)
         newPosX = self.posX + self.pasX
+        newPosY = self.posY + self.pasY
 
         #The environment is toric
         if self.torus :
             #The marble touches the top border
-            if newPosY + self.pasY < 0 :
+            if self.posY + self.pasY < 0 :
                 newPosY = self.environment.getNbRow()
             #The marble touches the bottom border
-            elif newPosY + self.pasY >= self.environment.getNbRow() :
+            elif self.posY + self.pasY >= self.environment.getNbRow() :
                 newPosY = 0
 
             #The marble touches the left border
-            if newPosX + self.pasX < 0 :
+            if self.posX + self.pasX < 0 :
                 newPosX = self.environment.getNbCol()
             #The marble touches the right border
-            elif newPosX + self.pasX >= self.environment.getNbCol() :
+            elif self.posX + self.pasX >= self.environment.getNbCol() :
                 newPosX = 0
-        #the environment is not toric
-        else :
-            newPosY += self.pasY
-            newPosX += self.pasX
 
+        print("newPosX:",newPosX)
+        print("newPosY:",newPosY)
         #moves only if the next cell is empty
         if self.environment.grid[newPosX][newPosY] == None :
             self.environment.setInCell(self.posX, self.posY, None)
             self.environment.setInCell(newPosX, newPosY, self)
 
-            self.posY = newPosY
             self.posX = newPosX
+            self.posY = newPosY
