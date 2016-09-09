@@ -31,5 +31,3 @@ class View(Observer):
                     '''marble'''
                     if environment[j][i]:
                         self.canvas.create_oval(i * self.boxSize + self.margin, j * self.boxSize + self.margin, (i + 1) * self.boxSize - self.margin, (j + 1 ) * self.boxSize - self.margin, fill = 'blue', width = 0)
-        self.window.update_idletasks()
-        self.window.update()
