@@ -92,7 +92,7 @@ class Main(object):
         self.SMA.addObserver(self.view)
 
     def run(self):
-        self.SMA.emitSignal("modelUpdated")
+        self.SMA.emitSignal("modelCreated")
         self.window.after(self.delay, self.update)
         self.window.mainloop()
 
