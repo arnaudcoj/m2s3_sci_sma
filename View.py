@@ -17,17 +17,17 @@ class View(Observer):
 
     def onReceive(self, signal, emitter):
         if signal == "modelUpdated":
-            self.draw(emitter.environment.grid)
+            self.draw(emitter.environment)
 
     def draw(self, environment):
         self.canvas.delete("all")
         if environment:
-            for j in range(len(environment)):
-                for i in range(len(environment[j])):
+            for j in range(environment.getNbRow()):
+                for i in range(environment.getNbCol()):
                     '''grid'''
                     if self.grid:
                         self.canvas.create_rectangle(i * self.boxSize, j * self.boxSize, (i + 1) * self.boxSize, (j + 1 ) * self.boxSize, fill = 'white', width = 1)
 
                     '''marble'''
-                    if environment[j][i]:
+                    if environment.grid[i][j]:
                         self.canvas.create_oval(i * self.boxSize + self.margin, j * self.boxSize + self.margin, (i + 1) * self.boxSize - self.margin, (j + 1 ) * self.boxSize - self.margin, fill = 'blue', width = 0)
