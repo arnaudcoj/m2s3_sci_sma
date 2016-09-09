@@ -27,6 +27,9 @@ class Main(object):
             dataFile.close()
             print("Properties from", fileName, "successfully loaded.")
 
+
+        self.delay = self.data["delay"]
+
     def createEnvironment(self):
         gridSizeX = self.data["gridSizeX"]
         gridSizeY = self.data["gridSizeY"]
@@ -72,12 +75,11 @@ class Main(object):
         self.environment.setInCell(x, y, agent)
 
     def createSMA(self, agentlist):
-        delay = self.data["delay"]
         scheduling = self.data["scheduling"]
         nbTicks = self.data["nbTicks"]
         trace = self.data["trace"]
 
-        self.SMA = SMA(self.environment, agentlist, delay, scheduling, nbTicks, trace)
+        self.SMA = SMA(self.environment, agentlist, scheduling, nbTicks, trace)
 
     def createWindow(self):
         self.window = Tk()
@@ -89,8 +91,14 @@ class Main(object):
         self.SMA.addObserver(self.view)
 
     def run(self):
-        self.SMA.run()
+        self.SMA.emitSignal("modelUpdated")
+        self.window.after(self.delay, self.update)
         self.window.mainloop()
+
+    def update(self):
+        self.SMA.run()
+        self.window.after(self.delay, self.update)
+
 
 def main():
     main = Main("properties.json")
