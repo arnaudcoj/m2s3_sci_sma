@@ -97,8 +97,8 @@ class Main(object):
         self.window.mainloop()
 
     def update(self):
-        self.SMA.run()
         if not self.SMA.hasFinished():
+            self.SMA.run()
             self.window.after(self.delay, self.update)
 
 
