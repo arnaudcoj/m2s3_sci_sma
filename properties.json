@@ -6,7 +6,7 @@
   "canvasSizeY":401,
   "boxSize":100,
   "delay":1000,
-  "scheduling":0,
+  "scheduling":"sequential",
   "nbTicks":6,
   "grid":"True",
   "trace":"True",

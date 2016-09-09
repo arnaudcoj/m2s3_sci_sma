@@ -1,4 +1,5 @@
 import time
+import random
 from Observable import *
 
 class SMA(Observable):
@@ -12,11 +13,16 @@ class SMA(Observable):
         self.agentlist = agentlist
         self.tick = 1
 
+    def hasFinished(self):
+        return self.tick > self.nbTicks
+
     def run(self):
-        self.emitSignal("modelUpdated")
-        if self.tick <= self.nbTicks :
+        if not self.hasFinished() :
             if self.trace: print("Tick", self.tick , "on", self.nbTicks)
-            for agent in self.agentlist:
+            agentlist = self.agentlist
+            if self.scheduling == "random":
+                random.shuffle(agentlist)
+            for agent in agentlist:
                 agent.decide()
                 agent.update()
                 if self.trace: print("agent", agent)
