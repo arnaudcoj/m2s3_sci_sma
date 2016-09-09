@@ -10,9 +10,7 @@ class Agent(object):
         self.name = posX + posY
         self.torus = torus
         self.setRandomColor()
-
-        self.pasY = 1
-        self.pasX = 1
+        self.setRandomPas()
 
     def setRandomColor(self):
         de = ("%02x" %random.randint(0,255))
@@ -20,6 +18,14 @@ class Agent(object):
         we = ("%02x" %random.randint(0,255))
         ge = "#"
         self.color= ge + de + re + we
+
+    def setRandomPas(self):
+        # maybe a bit gridy but we want to avoid a (0,0) direction
+        pasList = [(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
+        random.shuffle(pasList)
+        pas = pasList[0]
+        self.pasX = pas[0]
+        self.pasY = pas[1]
 
     def update(self):
         print("update")
