@@ -40,11 +40,11 @@ class Agent(object):
             #There is an agent on the next cell
             if nextCell != None :
                 print("occupied")
-                newPasX = nextCell.agent.pasX
-                newPasY = nextCell.agent.pasY
+                newPasX = nextCell.pasX
+                newPasY = nextCell.pasY
 
-                nextCell.agent.pasX = self.pasX
-                nextCell.agent.pasY = self.pasY
+                nextCell.pasX = self.pasX
+                nextCell.pasY = self.pasY
 
                 self.pasX = newPasX
                 self.pasY = newPasY

@@ -1,16 +1,16 @@
 {
-  "gridSizeX":4,
-  "gridSizeY":4,
+  "gridSizeX":5,
+  "gridSizeY":5,
   "torus":false,
-  "canvasSizeX":401,
-  "canvasSizeY":401,
+  "canvasSizeX":501,
+  "canvasSizeY":501,
   "boxSize":100,
   "delay":1000,
   "scheduling":0,
   "nbTicks":10,
   "grid":true,
   "trace":true,
-  "seed":"ckfrt",
+  "seed":0,
   "refresh":2,
-  "nbParticles":1
+  "nbParticles":2
 }
