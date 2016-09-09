@@ -1,16 +1,25 @@
+import random
+
 class Agent(object):
     """docstring for Agent"""
-    def __init__(self, environment, posX, posY, color, torus):
+    def __init__(self, environment, posX, posY, torus):
         super(Agent, self).__init__()
         self.environment = environment
         self.posX = posX
         self.posY = posY
         self.name = posX + posY
-        self.color = color
         self.torus = torus
+        self.setRandomColor()
 
         self.pasY = 1
         self.pasX = 1
+
+    def setRandomColor(self):
+        de = ("%02x" %random.randint(0,255))
+        re = ("%02x" %random.randint(0,255))
+        we = ("%02x" %random.randint(0,255))
+        ge = "#"
+        self.color= ge + de + re + we
 
     def update(self):
         print("update")
