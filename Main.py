@@ -15,8 +15,8 @@ class Main(object):
         self.createEnvironment()
         agentlist = []
         self.populate(agentlist)
-        self.createWindow()
         self.createSMA(agentlist)
+        self.createWindow()
         self.createView()
 
     def loadPropertiesFromJSON(self, fileName):
@@ -77,19 +77,20 @@ class Main(object):
         nbTicks = self.data["nbTicks"]
         trace = self.data["trace"]
 
-        self.SMA = SMA(self.window, self.environment, agentlist, delay, scheduling, nbTicks, trace)
+        self.SMA = SMA(self.environment, agentlist, delay, scheduling, nbTicks, trace)
 
     def createWindow(self):
         self.window = Tk()
-        self.canvas = Canvas(self.window, width = self.data["canvasSizeX"], height = self.data["canvasSizeX"], background = 'white')
+        self.canvas = Canvas(self.window, width = self.data["canvasSizeX"], height = self.data["canvasSizeX"], background = 'yellow')
         self.canvas.pack()
 
     def createView(self):
-        self.view = View(self.canvas, self.data["gridSizeX"], self.data["gridSizeY"], self.data["boxSize"], self.data["grid"], self.data["refresh"])
+        self.view = View(self.window, self.canvas, self.data["gridSizeX"], self.data["gridSizeY"], self.data["boxSize"], self.data["grid"], self.data["refresh"])
         self.SMA.addObserver(self.view)
 
     def run(self):
         self.SMA.run()
+        self.window.mainloop()
 
 def main():
     main = Main("properties.json")

@@ -4,7 +4,7 @@
   "torus":"True",
   "canvasSizeX":400,
   "canvasSizeY":400,
-  "boxSize":50,
+  "boxSize":100,
   "delay":1000,
   "scheduling":0,
   "nbTicks":6,
@@ -12,5 +12,5 @@
   "trace":"True",
   "seed":"ckfrt",
   "refresh":2,
-  "nbParticles":2
+  "nbParticles":1
 }
