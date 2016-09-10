@@ -97,14 +97,14 @@ class Agent(object):
         if self.torus :
             #The marble touches the top border
             if self.posY + self.pasY < 0 :
-                newPosY = self.environment.getNbRow()
+                newPosY = self.environment.getNbRow() -1
             #The marble touches the bottom border
             elif self.posY + self.pasY >= self.environment.getNbRow() :
                 newPosY = 0
 
             #The marble touches the left border
             if self.posX + self.pasX < 0 :
-                newPosX = self.environment.getNbCol()
+                newPosX = self.environment.getNbCol() - 1
             #The marble touches the right border
             elif self.posX + self.pasX >= self.environment.getNbCol() :
                 newPosX = 0
