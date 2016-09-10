@@ -112,7 +112,7 @@ class Agent(object):
         print("newPosX:",newPosX)
         print("newPosY:",newPosY)
         #moves only if the next cell is empty
-        if self.environment.grid[newPosX][newPosY] == None :
+        if (self.findNextCell() == None) or (self.environment.grid[newPosX][newPosY] == None) :
             self.environment.setInCell(self.posX, self.posY, None)
             self.environment.setInCell(newPosX, newPosY, self)
 

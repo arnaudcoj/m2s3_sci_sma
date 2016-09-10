@@ -10,7 +10,7 @@
   "nbTicks":1000,
   "grid":true,
   "trace":true,
-  "seed":0,
+  "seed":6013867490592053826,
   "refresh":1,
   "nbParticles":25,
   "autoquit":false
