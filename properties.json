@@ -1,17 +1,17 @@
 {
-  "gridSizeX":5,
-  "gridSizeY":5,
+  "gridSizeX":25,
+  "gridSizeY":25,
   "torus":false,
   "canvasSizeX":501,
   "canvasSizeY":501,
-  "boxSize":100,
+  "boxSize":20,
   "delay":1,
   "scheduling":0,
-  "nbTicks":20,
+  "nbTicks":1000,
   "grid":true,
   "trace":true,
   "seed":0,
   "refresh":1,
-  "nbParticles":2,
+  "nbParticles":25,
   "autoquit":false
 }
