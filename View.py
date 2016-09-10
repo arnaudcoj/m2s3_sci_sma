@@ -18,21 +18,36 @@ class View(Observer):
     def onReceive(self, signal, emitter):
         if signal == "modelUpdated":
             if emitter.tick % self.refresh == 0:
-                self.draw(emitter.environment)
+                self.updateParticles()
         elif signal == "modelCreated":
-            self.draw(emitter.environment)
+            if self.grid:
+                self.drawGrid(emitter.environment)
+            self.drawParticles(emitter.agentlist)
         elif signal == "destroy":
             self.window.destroy()
 
-    def draw(self, environment):
-        self.canvas.delete("all")
+    def drawGrid(self, environment):
         if environment:
             for j in range(environment.getNbRow()):
                 for i in range(environment.getNbCol()):
-                    '''grid'''
-                    if self.grid:
-                        self.canvas.create_rectangle(i * self.boxSize, j * self.boxSize, (i + 1) * self.boxSize, (j + 1 ) * self.boxSize, fill = 'white', width = 1)
+                    self.canvas.create_rectangle(i * self.boxSize, j * self.boxSize, (i + 1) * self.boxSize, (j + 1 ) * self.boxSize, fill = 'white', width = 1)
 
-                    '''marble'''
-                    if environment.grid[i][j]:
-                        self.canvas.create_oval(i * self.boxSize + self.margin, j * self.boxSize + self.margin, (i + 1) * self.boxSize - self.margin, (j + 1 ) * self.boxSize - self.margin, fill = environment.grid[i][j].color, width = 0)
+    def drawParticles(self, agentlist):
+        self.particleList = []
+        for agent in agentlist:
+            x1 = agent.posX * self.boxSize + self.margin
+            y1 = agent.posY * self.boxSize + self.margin
+            x2 = (agent.posX + 1) * self.boxSize - self.margin
+            y2 = (agent.posY + 1 ) * self.boxSize - self.margin
+            oval = self.canvas.create_oval(x1, y1, x2, y2, fill = agent.color, width = 0)
+            self.particleList.append((agent, oval))
+
+    def updateParticles(self):
+        for particle in self.particleList:
+            agent = particle[0]
+            oval = particle[1]
+            x1 = agent.posX * self.boxSize + self.margin
+            y1 = agent.posY * self.boxSize + self.margin
+            x2 = (agent.posX + 1) * self.boxSize - self.margin
+            y2 = (agent.posY + 1 ) * self.boxSize - self.margin
+            self.canvas.coords(oval, x1, y1, x2, y2)

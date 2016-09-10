@@ -7,7 +7,7 @@
   "boxSize":100,
   "delay":1,
   "scheduling":0,
-  "nbTicks":2,
+  "nbTicks":20,
   "grid":true,
   "trace":true,
   "seed":0,
