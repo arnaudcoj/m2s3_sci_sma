@@ -92,13 +92,15 @@ class Main(object):
         self.SMA.addObserver(self.view)
 
     def run(self):
-        self.SMA.emitSignal("modelUpdated")
+        self.SMA.emitSignal("modelCreated")
         self.window.after(self.delay, self.update)
         self.window.mainloop()
 
     def update(self):
-        self.SMA.run()
-        if not self.SMA.hasFinished():
+        if self.SMA.hasFinished():
+            self.SMA.emitSignal("destroy")
+        else:
+            self.SMA.run()
             self.window.after(self.delay, self.update)
 
 

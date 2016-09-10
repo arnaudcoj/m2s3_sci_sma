@@ -11,13 +11,18 @@ class View(Observer):
         self.gridSizeY = gridSizeY
         self.boxSize = boxSize
         self.grid = grid
-        self.refresh = 60
+        self.refresh = refresh
 
         self.margin = self.boxSize * 0.2
 
     def onReceive(self, signal, emitter):
         if signal == "modelUpdated":
+            if emitter.tick % self.refresh == 0:
+                self.draw(emitter.environment)
+        elif signal == "modelCreated":
             self.draw(emitter.environment)
+        elif signal == "destroy":
+            self.window.destroy()
 
     def draw(self, environment):
         self.canvas.delete("all")

@@ -64,7 +64,7 @@ class Agent(object):
         nextCellY = self.posY + self.pasY
 
         #the marble is on the edge of the environment
-        if (self.posY + self.pasY < 0) or (self.posY + self.pasY >= self.environment.getNbRow()) or (self.posX + self.pasX < 0) or (self.posX + self.pasX >= self.environment.getNbCol()) :
+        if (nextCellY < 0) or (nextCellY >= self.environment.getNbRow() - 1) or (nextCellX < 0) or (nextCellX >= self.environment.getNbCol() - 1) :
             #the environment is toric
             if self.torus :
                 if self.posY + self.pasY < 0 :
@@ -97,14 +97,14 @@ class Agent(object):
         if self.torus :
             #The marble touches the top border
             if self.posY + self.pasY < 0 :
-                newPosY = self.environment.getNbRow()
+                newPosY = self.environment.getNbRow() - 1
             #The marble touches the bottom border
             elif self.posY + self.pasY >= self.environment.getNbRow() :
                 newPosY = 0
 
             #The marble touches the left border
             if self.posX + self.pasX < 0 :
-                newPosX = self.environment.getNbCol()
+                newPosX = self.environment.getNbCol() -1
             #The marble touches the right border
             elif self.posX + self.pasX >= self.environment.getNbCol() :
                 newPosX = 0

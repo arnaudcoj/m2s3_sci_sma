@@ -12,5 +12,6 @@
   "trace":true,
   "seed":0,
   "refresh":1,
-  "nbParticles":25
+  "nbParticles":25,
+  "autoquit":false
 }
