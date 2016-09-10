@@ -97,7 +97,9 @@ class Main(object):
         self.window.mainloop()
 
     def update(self):
-        if not self.SMA.hasFinished():
+        if self.SMA.hasFinished():
+            self.SMA.emitSignal("destroy")
+        else:
             self.SMA.run()
             self.window.after(self.delay, self.update)
 

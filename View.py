@@ -21,6 +21,8 @@ class View(Observer):
                 self.draw(emitter.environment)
         elif signal == "modelCreated":
             self.draw(emitter.environment)
+        elif signal == "destroy":
+            self.window.destroy()
 
     def draw(self, environment):
         self.canvas.delete("all")

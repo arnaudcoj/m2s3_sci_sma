@@ -5,12 +5,13 @@
   "canvasSizeX":501,
   "canvasSizeY":501,
   "boxSize":100,
-  "delay":1000,
+  "delay":1,
   "scheduling":0,
-  "nbTicks":0,
+  "nbTicks":2,
   "grid":true,
   "trace":true,
   "seed":0,
   "refresh":1,
-  "nbParticles":2
+  "nbParticles":2,
+  "autoquit":false
 }
