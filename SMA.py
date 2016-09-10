@@ -11,10 +11,10 @@ class SMA(Observable):
         self.trace = trace
         self.environment = environment
         self.agentlist = agentlist
-        self.tick = 0
+        self.tick = 1
 
     def hasFinished(self):
-        return self.tick > self.nbTicks
+        return self.nbTicks and self.tick > self.nbTicks
 
     def run(self):
         if not self.hasFinished() :

@@ -7,10 +7,10 @@
   "boxSize":100,
   "delay":1000,
   "scheduling":0,
-  "nbTicks":10,
+  "nbTicks":0,
   "grid":true,
   "trace":true,
   "seed":0,
-  "refresh":2,
+  "refresh":1,
   "nbParticles":2
 }
