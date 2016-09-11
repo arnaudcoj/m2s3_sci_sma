@@ -72,11 +72,16 @@ class Main(object):
     def createWindow(self):
         self.window = Tk()
         self.window.title("S.M.A")
-        self.canvas = Canvas(self.window, width = data["canvasSizeX"], height = data["canvasSizeX"], background = 'yellow', bd=0, highlightthickness=0, relief='ridge')
+        self.canvas = Canvas(self.window, width = data["canvasSizeX"] + 1, height = data["canvasSizeY"] + 1, background = 'white', bd=0, highlightthickness=0, relief='ridge')
         self.canvas.pack()
 
     def createView(self):
-        self.view = View(self.window, self.canvas, data["gridSizeX"], data["gridSizeY"], data["boxSize"], data["grid"], data["refresh"])
+        boxSize = data["boxSize"]
+
+        if boxSize == 0 :
+            boxSize = min(data["canvasSizeX"], data["canvasSizeY"]) / max(data["gridSizeY"], data["gridSizeX"])
+
+        self.view = View(self.window, self.canvas, data["gridSizeX"], data["gridSizeY"], boxSize, data["grid"], data["refresh"])
         self.SMA.addObserver(self.view)
 
     def run(self):
@@ -85,7 +90,7 @@ class Main(object):
         self.window.mainloop()
 
     def update(self):
-        if self.SMA.hasFinished():
+        if self.SMA.hasFinished() and data["autoquit"]:
             self.SMA.emitSignal("destroy")
         else:
             self.SMA.run()
