@@ -1,7 +1,7 @@
 {
   "gridSizeX":25,
   "gridSizeY":25,
-  "torus":false,
+  "torus":true,
   "canvasSizeX":501,
   "canvasSizeY":501,
   "boxSize":20,
