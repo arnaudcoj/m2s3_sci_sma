@@ -2,13 +2,14 @@ import random
 
 class Agent(object):
     """docstring for Agent"""
-    def __init__(self, environment, posX, posY, torus):
+    def __init__(self, environment, posX, posY, name, torus, trace):
         super(Agent, self).__init__()
         self.environment = environment
         self.posX = posX
         self.posY = posY
-        self.name = posX + posY
+        self.name = name
         self.torus = torus
+        self.trace = trace
         self.setRandomColor()
         self.setRandomPas()
 
@@ -32,6 +33,8 @@ class Agent(object):
 
     def decide(self):
         nextCoords = self.findNextCell()
+        dirChanged = False
+
         if(nextCoords != None) :
             nextCell = self.environment.grid[nextCoords[0]][nextCoords[1]]
             #There is an agent on the next cell
@@ -44,14 +47,21 @@ class Agent(object):
 
                 self.pasX = newPasX
                 self.pasY = newPasY
+
+                dirChanged = True
         #the environment is not toric and the marble is on its edge
         else :
             #the border is on the top or the bottom
             if (self.posY + self.pasY < 0) or (self.posY + self.pasY >= self.environment.getNbRow()) :
                 self.pasY = -self.pasY
+                dirChanged = True
             #the border is on the left or the right
             if (self.posX + self.pasX < 0) or (self.posX + self.pasX >= self.environment.getNbCol()) :
                 self.pasX = -self.pasX
+                dirChanged = True
+
+        if self.trace and dirChanged:
+            self.printTrace()
 
     def findNextCell(self):
         nextCellX = self.posX + self.pasX
@@ -92,3 +102,6 @@ class Agent(object):
 
                 self.posX = newPosX
                 self.posY = newPosY
+
+    def printTrace(self):
+        print(self.name, self.posX, self.posY, self.pasX, self.pasY)

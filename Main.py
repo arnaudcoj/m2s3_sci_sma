@@ -63,10 +63,10 @@ class Main(object):
         #Pop a free cell from the list then create and place an agent in this cell
         for i in range(nbParticles):
             position = freeCells.pop()
-            self.createAgent(agentlist, position[0], position[1])
+            self.createAgent(agentlist, position[0], position[1], i)
 
-    def createAgent(self, agentlist, x, y):
-        agent = Agent(self.environment, x, y, self.data["torus"])
+    def createAgent(self, agentlist, x, y, name):
+        agent = Agent(self.environment, x, y, name, self.data["torus"], self.data["trace"])
         agentlist.append(agent)
         self.environment.setInCell(x, y, agent)
 
