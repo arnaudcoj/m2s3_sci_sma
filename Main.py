@@ -88,7 +88,6 @@ class Main(object):
 
         if boxSize == 0 :
             boxSize = min(self.data["canvasSizeX"], self.data["canvasSizeY"]) / max(self.data["gridSizeY"], self.data["gridSizeX"])
-            print(boxSize)
 
         self.view = View(self.window, self.canvas, self.data["gridSizeX"], self.data["gridSizeY"], boxSize, self.data["grid"], self.data["refresh"])
         self.SMA.addObserver(self.view)
