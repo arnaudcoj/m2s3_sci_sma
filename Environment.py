@@ -8,7 +8,6 @@ class Environment(object):
         self.grid = []
         for i in range(gridSizeX):
             self.grid.append([None] * gridSizeY)
-        print("The grid of size", gridSizeX, gridSizeY, "has successfully been created.")
 
     def setInCell(self, x, y, obj):
         self.grid[x][y] = obj
@@ -48,7 +47,3 @@ class Environment(object):
 
         #End
         print("")
-
-#env = Environment(4,2,True)
-#env.printASCII()
-#print(env.getFreeCells())

@@ -31,10 +31,7 @@ class Agent(object):
         self.move()
 
     def decide(self):
-        print("posX:",self.posX)
-        print("posY:",self.posY)
         nextCoords = self.findNextCell()
-        print("nextCoords:", nextCoords)
         if(nextCoords != None) :
             nextCell = self.environment.grid[nextCoords[0]][nextCoords[1]]
             #There is an agent on the next cell
@@ -81,11 +78,7 @@ class Agent(object):
 
 
     def move(self):
-        print("pasX:",self.pasX)
-        print("pasY:",self.pasY)
-
         nextCoords = self.findNextCell()
-        print("nextCoords:", nextCoords)
 
         #moves only if there is a next cell
         if(nextCoords != None) :

@@ -25,7 +25,6 @@ class Main(object):
             self.data = json.loads(dataFile.read())
         finally:
             dataFile.close()
-            print("Properties from", fileName, "successfully loaded.")
 
 
         self.delay = self.data["delay"]
@@ -65,9 +64,6 @@ class Main(object):
         for i in range(nbParticles):
             position = freeCells.pop()
             self.createAgent(agentlist, position[0], position[1])
-            print("added particle", i, "on", nbParticles, "to position", position)
-
-        print(nbParticles, "particles have been created and placed on the grid with the seed :", seed)
 
     def createAgent(self, agentlist, x, y):
         agent = Agent(self.environment, x, y, self.data["torus"])

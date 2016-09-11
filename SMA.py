@@ -25,6 +25,5 @@ class SMA(Observable):
             for agent in agentlist:
                 agent.decide()
                 agent.update()
-                if self.trace: print("agent", agent)
                 self.emitSignal("modelUpdated")
             self.tick += 1
