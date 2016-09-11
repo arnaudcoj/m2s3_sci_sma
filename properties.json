@@ -13,5 +13,6 @@
   "seed":0,
   "refresh":1,
   "nbParticles":25,
-  "autoquit":false
+  "autoquit":false,
+  "profile":false
 }

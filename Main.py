@@ -9,9 +9,11 @@ from View import *
 
 class Main(object):
     """docstring for Main"""
-    def __init__(self, fileName):
+    def __init__(self, nbParticles=None):
         super(Main, self).__init__()
-        self.loadPropertiesFromJSON(fileName)
+        self.delay = data["delay"]
+        if nbParticles != None:
+            data["nbParticles"] = nbParticles
         self.createEnvironment()
         agentlist = []
         self.populate(agentlist)
@@ -19,27 +21,17 @@ class Main(object):
         self.createWindow()
         self.createView()
 
-    def loadPropertiesFromJSON(self, fileName):
-        dataFile = open(fileName, 'r')
-        try:
-            self.data = json.loads(dataFile.read())
-        finally:
-            dataFile.close()
-
-
-        self.delay = self.data["delay"]
-
     def createEnvironment(self):
-        gridSizeX = self.data["gridSizeX"]
-        gridSizeY = self.data["gridSizeY"]
-        torus = self.data["torus"]
+        gridSizeX = data["gridSizeX"]
+        gridSizeY = data["gridSizeY"]
+        torus = data["torus"]
 
         self.environment = Environment(gridSizeX, gridSizeY, torus)
 
     def populate(self, agentlist):
         #Fetch data
-        seed = self.data["seed"]
-        nbParticles = self.data["nbParticles"]
+        seed = data["seed"]
+        nbParticles = data["nbParticles"]
 
         #Check if there is a given seed
         if seed == 0 or seed == "0" :
@@ -66,25 +58,25 @@ class Main(object):
             self.createAgent(agentlist, position[0], position[1], i)
 
     def createAgent(self, agentlist, x, y, name):
-        agent = Agent(self.environment, x, y, name, self.data["torus"], self.data["trace"])
+        agent = Agent(self.environment, x, y, name, data["torus"], data["trace"])
         agentlist.append(agent)
         self.environment.setInCell(x, y, agent)
 
     def createSMA(self, agentlist):
-        scheduling = self.data["scheduling"]
-        nbTicks = self.data["nbTicks"]
-        trace = self.data["trace"]
+        scheduling = data["scheduling"]
+        nbTicks = data["nbTicks"]
+        trace = data["trace"]
 
         self.SMA = SMA(self.environment, agentlist, scheduling, nbTicks, trace)
 
     def createWindow(self):
         self.window = Tk()
         self.window.title("S.M.A")
-        self.canvas = Canvas(self.window, width = self.data["canvasSizeX"], height = self.data["canvasSizeX"], background = 'yellow', bd=0, highlightthickness=0, relief='ridge')
+        self.canvas = Canvas(self.window, width = data["canvasSizeX"], height = data["canvasSizeX"], background = 'yellow', bd=0, highlightthickness=0, relief='ridge')
         self.canvas.pack()
 
     def createView(self):
-        self.view = View(self.window, self.canvas, self.data["gridSizeX"], self.data["gridSizeY"], self.data["boxSize"], self.data["grid"], self.data["refresh"])
+        self.view = View(self.window, self.canvas, data["gridSizeX"], data["gridSizeY"], data["boxSize"], data["grid"], data["refresh"])
         self.SMA.addObserver(self.view)
 
     def run(self):
@@ -99,9 +91,33 @@ class Main(object):
             self.SMA.run()
             self.window.after(self.delay, self.update)
 
+def loadPropertiesFromJSON(fileName):
+    global data
+    dataFile = open(fileName, 'r')
+    try:
+        data = json.loads(dataFile.read())
+    finally:
+        dataFile.close()
 
 def main():
-    main = Main("properties.json")
+    loadPropertiesFromJSON("properties.json")
+    if data["profile"]:
+        profile()
+    else:
+        run()
+
+def profile():
+    nbParticles = data["nbParticles"]
+    for i in range(1, nbParticles):
+        startTime = time.clock()
+        main = Main(nbParticles=i)
+        main.run()
+        endTime = time.clock()
+        executionTime = endTime - startTime
+        print("%5f seconds for %d particles" % (executionTime, i))
+
+def run():
+    main = Main()
     main.run()
 
 if __name__ == '__main__':
