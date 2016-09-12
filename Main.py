@@ -103,8 +103,11 @@ def loadPropertiesFromJSON(fileName):
     dataFile = open(fileName, 'r')
     try:
         data = json.loads(dataFile.read())
+        print("its k", data)
     finally:
         dataFile.close()
+
+def setDefaultProperties():
     if not "gridSizeX" in data:
         data["gridSizeX"] = 10
     if not "gridSizeY" in data:
@@ -141,7 +144,14 @@ def loadPropertiesFromJSON(fileName):
         data["profileStep"] = 40
 
 def main():
-    loadPropertiesFromJSON("properties.json")
+    global data
+    data = dict()
+    if len(sys.argv) > 1:
+        fileName = sys.argv[1]
+        print(fileName)
+        loadPropertiesFromJSON(fileName)
+        print(data)
+    setDefaultProperties()
     if data["profile"]:
         profile()
     else:
