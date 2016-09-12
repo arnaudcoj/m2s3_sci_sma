@@ -68,7 +68,7 @@ class Agent(object):
         nextCellY = self.posY + self.pasY
 
         #the marble is on the edge of the environment
-        if (nextCellY < 0) or (nextCellY >= self.environment.getNbRow() - 1) or (nextCellX < 0) or (nextCellX >= self.environment.getNbCol() - 1) :
+        if (nextCellY < 0) or (nextCellY >= self.environment.getNbRow()) or (nextCellX < 0) or (nextCellX >= self.environment.getNbCol()) :
             #the environment is toric
             if self.torus :
                 if self.posY + self.pasY < 0 :
