@@ -160,13 +160,15 @@ def main():
 def profile():
     nbParticles = data["nbParticles"]
     profileStep = data["profileStep"]
+    nbTicks = data["nbTicks"]
     for i in range(0, nbParticles +1, int(nbParticles / profileStep)):
         startTime = time.clock()
         main = Main(nbParticles=i)
         main.run()
         endTime = time.clock()
         executionTime = endTime - startTime
-        print("%d,%5f" % (i, executionTime))
+        tps = nbTicks / executionTime
+        print("%d,%f" % (i, tps))
 
 def run():
     main = Main()
