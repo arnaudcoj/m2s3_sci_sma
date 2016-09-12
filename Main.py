@@ -61,6 +61,8 @@ class Main(object):
         agent = Agent(self.environment, x, y, name, data["torus"], data["trace"])
         agentlist.append(agent)
         self.environment.setInCell(x, y, agent)
+        if data["trace"]:
+            agent.printTrace()
 
     def createSMA(self, agentlist):
         scheduling = data["scheduling"]
@@ -113,13 +115,14 @@ def main():
 
 def profile():
     nbParticles = data["nbParticles"]
+    print("nbParticles,executionTime")
     for i in range(1, nbParticles):
         startTime = time.clock()
         main = Main(nbParticles=i)
         main.run()
         endTime = time.clock()
         executionTime = endTime - startTime
-        print("%5f seconds for %d particles" % (executionTime, i))
+        print("%d,%5f" % (i, executionTime))
 
 def run():
     main = Main()

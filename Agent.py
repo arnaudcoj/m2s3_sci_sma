@@ -104,4 +104,4 @@ class Agent(object):
                 self.posY = newPosY
 
     def printTrace(self):
-        print(self.name, self.posX, self.posY, self.pasX, self.pasY)
+        print(self.name, self.posX, self.posY, self.pasX, self.pasY, sep=",")
