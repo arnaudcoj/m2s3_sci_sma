@@ -90,11 +90,10 @@ class Main(object):
         self.window.mainloop()
 
     def update(self):
-        if self.SMA.hasFinished() and data["autoquit"]:
-            self.SMA.emitSignal("destroy")
+        if self.SMA.hasFinished() and (data["profile"] or data["autoquit"]):
+            self.SMA.emitSignal("finished")
         else:
             self.SMA.run()
-            self.view.updateParticles()
             self.window.after(self.delay, self.update)
 
 def loadPropertiesFromJSON(fileName):

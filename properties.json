@@ -14,5 +14,5 @@
   "refresh":1,
   "nbParticles":1000,
   "autoquit":true,
-  "profile":false
+  "profile":true
 }
