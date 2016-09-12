@@ -103,11 +103,55 @@ def loadPropertiesFromJSON(fileName):
     dataFile = open(fileName, 'r')
     try:
         data = json.loads(dataFile.read())
+        print("its k", data)
     finally:
         dataFile.close()
 
+def setDefaultProperties():
+    if not "gridSizeX" in data:
+        data["gridSizeX"] = 10
+    if not "gridSizeY" in data:
+        data["gridSizeY"] = 10
+    if not "torus" in data:
+        data["torus"] = True
+    if not "canvasSizeX" in data:
+        data["canvasSizeX"] = 800
+    if not "canvasSizeY" in data:
+        data["canvasSizeY"] = 800
+    if not "boxSize" in data:
+        data["boxSize"] = 0
+    if not "delay" in data:
+        data["delay"] = 500
+    if not "scheduling" in data:
+        data["scheduling"] = "sequential"
+    if not "nbTicks" in data:
+        data["nbTicks"] = 20
+    if not "grid" in data:
+        data["grid"] = True
+    if not "trace" in data:
+        data["trace"] = True
+    if not "seed" in data:
+        data["seed"] = 0
+    if not "refresh" in data:
+        data["refresh"] = 1
+    if not "nbParticles" in data:
+        data["nbParticles"] = 15
+    if not "autoquit" in data:
+        data["autoquit"] = False
+    if not "profile" in data:
+        data["profile"] = False
+    if not "profileStep" in data:
+        data["profileStep"] = 40
+
 def main():
-    loadPropertiesFromJSON("properties.json")
+    global data
+    data = dict()
+    if len(sys.argv) > 1:
+        fileName = sys.argv[1]
+        print(fileName)
+        loadPropertiesFromJSON(fileName)
+        print(data)
+    setDefaultProperties()
     if data["profile"]:
         profile()
     else:
