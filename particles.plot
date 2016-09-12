@@ -4,4 +4,4 @@ set xlabel 'Amount of particles'
 set term png
 set output 'particles.png'
 set datafile separator ','
-plot 'particles.csv' 
+plot 'particles.csv' with linespoints
