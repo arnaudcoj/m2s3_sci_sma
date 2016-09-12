@@ -5,14 +5,15 @@
   "canvasSizeX":1000,
   "canvasSizeY":1000,
   "boxSize":0,
-  "delay":50,
+  "delay":1,
   "scheduling":0,
-  "nbTicks":2,
+  "nbTicks":10,
   "grid":true,
   "trace":false,
   "seed":0,
   "refresh":1,
-  "nbParticles":1000,
+  "nbParticles":10000,
   "autoquit":true,
-  "profile":true
+  "profile":true,
+  "profileStep":40
 }
