@@ -26,5 +26,5 @@ class SMA(Observable):
             for agent in agentlist:
                 agent.decide()
                 agent.update()
-                self.emitSignal("modelUpdated")
+                #self.emitSignal("modelUpdated")
             self.tick += 1

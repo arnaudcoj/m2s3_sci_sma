@@ -94,6 +94,7 @@ class Main(object):
             self.SMA.emitSignal("destroy")
         else:
             self.SMA.run()
+            self.view.updateParticles()
             self.window.after(self.delay, self.update)
 
 def loadPropertiesFromJSON(fileName):
