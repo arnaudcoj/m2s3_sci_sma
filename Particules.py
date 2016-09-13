@@ -15,8 +15,8 @@ class Particules(Core):
 
     def populate(self, agentlist):
         #Fetch data
-        seed = data["seed"]
-        nbParticles = data["nbParticles"]
+        seed = self.data["seed"]
+        nbParticles = self.data["nbParticles"]
 
         #Check if there is a given seed
         if seed == 0 or seed == "0" :
@@ -43,47 +43,47 @@ class Particules(Core):
             self.createAgent(agentlist, position[0], position[1], i)
 
     def createAgent(self, agentlist, x, y, name):
-        agent = Particle(self.environment, x, y, name, data["torus"], data["trace"])
+        agent = Particle(self.environment, x, y, name, self.data["torus"], self.data["trace"])
         agentlist.append(agent)
         self.environment.setInCell(x, y, agent)
-        if data["trace"]:
+        if self.data["trace"]:
             agent.printTrace()
 
-def setDefaultProperties():
-    if not "gridSizeX" in data:
-        data["gridSizeX"] = 10
-    if not "gridSizeY" in data:
-        data["gridSizeY"] = 10
-    if not "torus" in data:
-        data["torus"] = True
-    if not "canvasSizeX" in data:
-        data["canvasSizeX"] = 500
-    if not "canvasSizeY" in data:
-        data["canvasSizeY"] = 500
-    if not "boxSize" in data:
-        data["boxSize"] = 0
-    if not "delay" in data:
-        data["delay"] = 100
-    if not "scheduling" in data:
-        data["scheduling"] = "sequential"
-    if not "nbTicks" in data:
-        data["nbTicks"] = 100
-    if not "grid" in data:
-        data["grid"] = True
-    if not "trace" in data:
-        data["trace"] = True
-    if not "seed" in data:
-        data["seed"] = 0
-    if not "refresh" in data:
-        data["refresh"] = 1
-    if not "nbParticles" in data:
-        data["nbParticles"] = 10
-    if not "autoquit" in data:
-        data["autoquit"] = False
-    if not "profile" in data:
-        data["profile"] = False
-    if not "profileStep" in data:
-        data["profileStep"] = 40
+    def setDefaultProperties(self):
+        if not "gridSizeX" in self.data:
+            self.data["gridSizeX"] = 10
+        if not "gridSizeY" in self.data:
+            self.data["gridSizeY"] = 10
+        if not "torus" in self.data:
+            self.data["torus"] = True
+        if not "canvasSizeX" in self.data:
+            self.data["canvasSizeX"] = 500
+        if not "canvasSizeY" in self.data:
+            self.data["canvasSizeY"] = 500
+        if not "boxSize" in self.data:
+            self.data["boxSize"] = 0
+        if not "delay" in self.data:
+            self.data["delay"] = 100
+        if not "scheduling" in self.data:
+            self.data["scheduling"] = "sequential"
+        if not "nbTicks" in self.data:
+            self.data["nbTicks"] = 100
+        if not "grid" in self.data:
+            self.data["grid"] = True
+        if not "trace" in self.data:
+            self.data["trace"] = True
+        if not "seed" in self.data:
+            self.data["seed"] = 0
+        if not "refresh" in self.data:
+            self.data["refresh"] = 1
+        if not "nbParticles" in self.data:
+            self.data["nbParticles"] = 10
+        if not "autoquit" in self.data:
+            self.data["autoquit"] = False
+        if not "profile" in self.data:
+            self.data["profile"] = False
+        if not "profileStep" in self.data:
+            self.data["profileStep"] = 40
 
 if __name__ == '__main__':
     main(Particules)
