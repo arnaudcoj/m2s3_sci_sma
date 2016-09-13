@@ -4,7 +4,7 @@ import random
 
 from Environment import *
 from SMA import *
-from Agent import *
+from Particle import *
 from View import *
 
 class Main(object):
@@ -58,7 +58,7 @@ class Main(object):
             self.createAgent(agentlist, position[0], position[1], i)
 
     def createAgent(self, agentlist, x, y, name):
-        agent = Agent(self.environment, x, y, name, data["torus"], data["trace"])
+        agent = Particle(self.environment, x, y, name, data["torus"], data["trace"])
         agentlist.append(agent)
         self.environment.setInCell(x, y, agent)
         if data["trace"]:
