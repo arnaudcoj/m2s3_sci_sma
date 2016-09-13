@@ -1,5 +1,6 @@
 import random
 
+# Main.py should have added ../core to the include paths
 from Agent import *
 
 class Particle(Agent):

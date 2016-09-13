@@ -2,6 +2,7 @@ import json
 import sys
 import random
 
+sys.path.append('../core')
 from Core import *
 from Environment import *
 from SMA import *
