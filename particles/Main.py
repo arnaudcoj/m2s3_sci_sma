@@ -9,10 +9,10 @@ from SMA import *
 from Particle import *
 from View import *
 
-class Particules(Core):
-    """docstring for Particules"""
+class Main(Core):
+    """docstring for Main"""
     def __init__(self, nbParticles=None):
-        super(Particules, self).__init__()
+        super(Main, self).__init__()
 
     def populate(self, agentlist):
         #Fetch data
@@ -87,4 +87,4 @@ class Particules(Core):
             self.data["profileStep"] = 40
 
 if __name__ == '__main__':
-    main(Particules)
+    main(Main)
