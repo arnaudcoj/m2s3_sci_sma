@@ -36,10 +36,11 @@ class View(Observer):
             self.canvas.coords(oval, x1, y1, x2, y2)
 
     def drawGrid(self, environment):
-        if environment:
-            for j in range(environment.getNbRow()):
-                for i in range(environment.getNbCol()):
-                    self.canvas.create_rectangle(i * self.boxSize, j * self.boxSize, (i + 1) * self.boxSize, (j + 1 ) * self.boxSize, fill = 'white', width = 1)
+        if self.grid:
+            if environment:
+                for j in range(environment.getNbRow()):
+                    for i in range(environment.getNbCol()):
+                        self.canvas.create_rectangle(i * self.boxSize, j * self.boxSize, (i + 1) * self.boxSize, (j + 1 ) * self.boxSize, fill = 'white', width = 1)
 
     def drawParticles(self, agentlist):
         self.particleList = []
