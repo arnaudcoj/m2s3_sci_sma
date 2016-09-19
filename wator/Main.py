@@ -43,9 +43,9 @@ class Main(Core):
 
     def setDefaultProperties(self):
         if not "gridSizeX" in self.data:
-            self.data["gridSizeX"] = 10
+            self.data["gridSizeX"] = 50
         if not "gridSizeY" in self.data:
-            self.data["gridSizeY"] = 10
+            self.data["gridSizeY"] = 50
         if not "torus" in self.data:
             self.data["torus"] = True
         if not "canvasSizeX" in self.data:
@@ -59,7 +59,7 @@ class Main(Core):
         if not "scheduling" in self.data:
             self.data["scheduling"] = "sequential"
         if not "nbTicks" in self.data:
-            self.data["nbTicks"] = 100
+            self.data["nbTicks"] = 1000
         if not "grid" in self.data:
             self.data["grid"] = True
         if not "trace" in self.data:
@@ -68,18 +68,12 @@ class Main(Core):
             self.data["seed"] = 0
         if not "refresh" in self.data:
             self.data["refresh"] = 1
-        if not "nbParticles" in self.data:
-            self.data["nbParticles"] = 10
         if not "autoquit" in self.data:
             self.data["autoquit"] = False
-        if not "profile" in self.data:
-            self.data["profile"] = False
-        if not "profileStep" in self.data:
-            self.data["profileStep"] = None
         if not "nbSharks" in self.data:
             self.data["nbSharks"] = 5
         if not "nbFishes" in self.data:
-            self.data["nbFishes"] = 20
+            self.data["nbFishes"] = 200
         if not "sharkBreedTime" in self.data:
             self.data["sharkBreedTime"] = 10
         if not "sharkStarveTime" in self.data:

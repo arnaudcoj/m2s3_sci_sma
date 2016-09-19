@@ -116,7 +116,7 @@ class Core(object):
             self.clearSystem()
 
     def update(self):
-        if self.SMA.hasFinished() and (self.data["profile"] or self.data["autoquit"]):
+        if self.SMA.hasFinished() and self.data["autoquit"]:
             self.SMA.emitSignal("finished")
         else:
             self.SMA.run()
@@ -133,30 +133,12 @@ class Core(object):
 
 def runSystem(systemType):
     system = systemType()
-    if system.data["profile"]:
+    if systemType == "Particle" and system.data["profile"]:
         system.profile()
     else:
         system.run()
 
-#def profileSystem(systemType):
-#    nbParticles = self.data["nbParticles"]
-#    profileStep = self.data["profileStep"]
-#    nbTicks = self.data["nbTicks"]
-#    for i in range(0, nbParticles +1, int(nbParticles / profileStep)):
-#        startTime = time.clock()
-#        system = systemType(nbParticles=i)
-#        system.main()
-#        endTime = time.clock()
-#        executionTime = endTime - startTime
-#        tps = nbTicks / executionTime
-#        print("%d,%f" % (i, tps))
-
-
 def main(systemType):
-#    if "profile" in data and self.data["profile"]:
-#        profileSystem(systemType)
-#    else:
-#        runSystem(systemType)
     runSystem(systemType)
 
 if __name__ == '__main__':
