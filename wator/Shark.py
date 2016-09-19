@@ -19,7 +19,7 @@ class Shark(Agent):
             coords = self.findNextCellFromPas(pas[0], pas[1])
             if(coords) :
                 cell = self.environment.grid[coords[0]][coords[1]]
-                if cell :
+                if cell and type(cell) == Fish:
                     return pas
         return None
 
@@ -56,10 +56,14 @@ class Shark(Agent):
 
     def update(self):
         self.color = "Red"
+        self.previousX = self.posX
+        self.previousY = self.posY
         self.starve()
         self.eat()
         self.move()
         self.breed()
+        self.previousX = self.posX
+        self.previousY = self.posY
 
     def isDead(self):
         return self.currentStarveTime < 0
