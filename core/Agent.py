@@ -37,7 +37,7 @@ class Agent(object):
         for pas in pasList :
             print("pasX", pas[0])
             print("pasY", pas[1])
-            nextCoords = self.findNextCell(pas[0], pas[1])
+            nextCoords = self.findNextCellFromPas(pas[0], pas[1])
             print("posX", self.posX)
             print("posY", self.posY)
             print("coords", nextCoords)
@@ -56,7 +56,7 @@ class Agent(object):
     def isDead(self):
         return False
 
-    def findNextCell(self, pasX = self.pasX, pasY = self.pasY):
+    def findNextCellFromPas(self, pasX, pasY):
         nextCellX = self.posX + pasX
         nextCellY = self.posY + pasY
 
@@ -78,6 +78,9 @@ class Agent(object):
                 return None
 
         return (nextCellX, nextCellY)
+
+    def findNextCell(self):
+        self.findNextCellFromPas(self.pasX, self.pasY)
 
     def move(self):
         nextCoords = self.findNextCell()
