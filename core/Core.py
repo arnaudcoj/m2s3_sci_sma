@@ -60,17 +60,13 @@ class Core(object):
         self.createSMA(agentlist)
 
     def createEnvironment(self):
-        gridSizeX = self.data["gridSizeX"]
-        gridSizeY = self.data["gridSizeY"]
-        torus = self.data["torus"]
-
-        self.environment = Environment(gridSizeX, gridSizeY, torus)
+        self.environment = Environment(self.data)
 
     def populate(self, agentlist):
         raise NotImplementedError("Core.populate needs to be implemented")
 
     def createAgent(self, agentType, agentlist, x, y, name):
-        agent = agentType(self.environment, x, y, name, self.data)
+        agent = agentType(self.environment, x, y, name)
         agentlist.append(agent)
         self.environment.setInCell(x, y, agent)
         if self.data["trace"]:

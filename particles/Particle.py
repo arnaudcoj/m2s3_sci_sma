@@ -5,8 +5,8 @@ from Agent import *
 
 class Particle(Agent):
     """docstring for Agent"""
-    def __init__(self, environment, posX, posY, name, data):
-        super(Particle, self).__init__(environment, posX, posY, name, data)
+    def __init__(self, environment, posX, posY, name):
+        super(Particle, self).__init__(environment, posX, posY, name)
         self.setRandomColor()
         self.setRandomPas()
 
@@ -14,10 +14,10 @@ class Particle(Agent):
         nextCoords = self.findNextCell()
         dirChanged = False
 
-        if(nextCoords != None) :
+        if(nextCoords) :
             nextCell = self.environment.grid[nextCoords[0]][nextCoords[1]]
             #There is an agent on the next cell
-            if nextCell != None :
+            if nextCell :
                 newPasX = nextCell.pasX
                 newPasY = nextCell.pasY
 

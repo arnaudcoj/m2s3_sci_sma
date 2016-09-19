@@ -1,13 +1,14 @@
 class Environment(object):
     """docstring for Environment"""
-    def __init__(self, gridSizeX, gridSizeY, torus):
+    def __init__(self, data):
         super(Environment, self).__init__()
-        self.initGrid(gridSizeX, gridSizeY, torus)
+        self.data = data
+        self.initGrid()
 
-    def initGrid(self, gridSizeX, gridSizeY, torus):
+    def initGrid(self):
         self.grid = []
-        for i in range(gridSizeX):
-            self.grid.append([None] * gridSizeY)
+        for i in range(self.data["gridSizeX"]):
+            self.grid.append([None] * self.data["gridSizeY"])
 
     def setInCell(self, x, y, obj):
         self.grid[x][y] = obj
