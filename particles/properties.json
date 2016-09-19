@@ -15,5 +15,10 @@
   "nbParticles":10000,
   "autoquit":false,
   "profile":true,
-  "profileStep":40
+  "profileStep":40,
+  "nbSharks":0,
+  "nbFishes":0,
+  "sharkBreedTime":0,
+  "sharkStarveTime":0,
+  "fishBreedTime":0
 }
