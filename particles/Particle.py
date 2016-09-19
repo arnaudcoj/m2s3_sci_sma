@@ -5,10 +5,8 @@ from Agent import *
 
 class Particle(Agent):
     """docstring for Agent"""
-    def __init__(self, environment, posX, posY, name, torus, trace):
-        super(Particle, self).__init__(environment, posX, posY, name, torus, trace)
-
-    def create(self):
+    def __init__(self, environment, posX, posY, name, data):
+        super(Particle, self).__init__(environment, posX, posY, name, data)
         self.setRandomColor()
         self.setRandomPas()
 
@@ -58,3 +56,6 @@ class Particle(Agent):
 
         if self.trace and dirChanged:
             self.printTrace()
+
+    def update(self):
+        self.move()

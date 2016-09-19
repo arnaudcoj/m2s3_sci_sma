@@ -2,21 +2,19 @@ import random
 
 class Agent(object):
     """docstring for Agent"""
-    def __init__(self, environment, posX, posY, name, torus, trace):
+    def __init__(self, environment, posX, posY, name, data):
         super(Agent, self).__init__()
         self.environment = environment
         self.posX = posX
         self.posY = posY
+        self.pasX = 0
+        self.pasY = 0
         self.name = name
-        self.torus = torus
-        self.trace = trace
-        self.create()
-
-    def create(self):
-        raise NotImplementedError("Agent.create needs to be implemented")
+        self.torus = data["torus"]
+        self.trace = data["trace"]
 
     def update(self):
-        self.move()
+        raise NotImplementedError("Agent.update needs to be implemented")
 
     def decide(self):
         raise NotImplementedError("Agent.decide needs to be implemented")

@@ -70,7 +70,7 @@ class Core(object):
         raise NotImplementedError("Core.populate needs to be implemented")
 
     def createAgent(self, agentType, agentlist, x, y, name):
-        agent = agentType(self.environment, x, y, name, self.data["torus"], self.data["trace"])
+        agent = agentType(self.environment, x, y, name, self.data)
         agentlist.append(agent)
         self.environment.setInCell(x, y, agent)
         if self.data["trace"]:

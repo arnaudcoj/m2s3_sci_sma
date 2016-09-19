@@ -14,7 +14,7 @@
   "refresh":1,
   "autoquit":false,
   "nbSharks":5,
-  "nbFishes":200,
+  "nbFishes":20,
   "sharkBreedTime":10,
   "sharkStarveTime":3,
   "fishBreedTime":2
