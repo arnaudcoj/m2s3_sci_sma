@@ -13,7 +13,9 @@ class Shark(Agent):
         self.color = "Pink"
 
     def decide(self):
-        self.setRandomPas()
+        freeNeighbors = self.getDirectionsToFreeNeighbors()
+        if freeNeighbors :
+            self.setRandomPasIn(freeNeighbors)
 
     def update(self):
         self.starve()

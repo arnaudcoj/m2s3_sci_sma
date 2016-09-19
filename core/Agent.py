@@ -35,14 +35,11 @@ class Agent(object):
         directions = []
         pasList = [(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
         for pas in pasList :
-            print("pasX", pas[0])
-            print("pasY", pas[1])
             nextCoords = self.findNextCellFromPas(pas[0], pas[1])
-            print("posX", self.posX)
-            print("posY", self.posY)
-            print("coords", nextCoords)
             if(nextCoords) :
+                print(nextCoords)
                 nextCell = self.environment.grid[nextCoords[0]][nextCoords[1]]
+                print(nextCell)
                 if nextCell :
                     directions.append(pas)
         return directions
