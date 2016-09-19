@@ -23,8 +23,17 @@ class SMA(Observable):
             agentlist = self.agentlist
             if self.scheduling == "random":
                 random.shuffle(agentlist)
+            deadAgents = []
             for agent in agentlist:
                 agent.decide()
                 agent.update()
+                if agent.isDead():
+                    deadAgents.append(agent)
+            for agent in deadAgents :
+                self.killAgent(agent)
             self.emitSignal("modelUpdated")
             self.tick += 1
+
+    def killAgent(self, agent):
+        self.environment.setInCell(agent.posX, agent.posY, None)
+        self.agentlist.remove(agent)

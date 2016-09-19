@@ -12,9 +12,9 @@
   "trace":true,
   "seed":"ckfrt",
   "refresh":1,
-  "autoquit":false,
+  "autoquit":true,
   "nbSharks":5,
-  "nbFishes":20,
+  "nbFishes":0,
   "sharkBreedTime":10,
   "sharkStarveTime":3,
   "fishBreedTime":2

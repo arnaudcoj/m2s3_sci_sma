@@ -30,4 +30,3 @@ class Fish(Agent):
         self.breed()
         self.previousX = self.posX
         self.previousY = self.posY
-
