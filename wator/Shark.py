@@ -1,20 +1,36 @@
 from Agent import *
+from Fish import *
 
 class Shark(Agent):
     def __init__(self, environment, posX, posY, name, data):
         super(Shark, self).__init__(environment, posX, posY, name, data)
         self.breedTime = data["sharkBreedTime"]
         self.starveTime = data["sharkStarveTime"]
+        self.currentStarveTime = starveTime
         self.color = "Pink"
 
     def decide(self):
         raise NotImplementedError("Shark.decide needs to be implemented")
 
     def starve(self):
-        raise NotImplementedError("Shark.starve needs to be implemented")
+        if self.currentStarveTime == 0:
+            self.die()
+        else:
+            self.currentStarveTime -= 1
+
+    def die(self):
+        self.environment.setInCell(self.posX, self.posY, None)
+        raise NotImplementedError("Shark.die needs to be implemented")
+
 
     def eat(self):
-        raise NotImplementedError("Shark.eat needs to be implemented")
+        nextCell = self.findNextCell()
+        nextCellAgent = self.environment.grid[nextCell[0]][nextCell[1]]
+        if nextCellAgent != None and nextCellAgent.type == Fish:
+            #the shark eats
+            self.environment.setInCell(nextCell[0], nextCell[1], None)
+            self.currentStarveTime = self.starveTime
+
 
     def move(self):
         raise NotImplementedError("Shark.move needs to be implemented")
