@@ -17,12 +17,6 @@ class Shark(Agent):
         if freeNeighbors :
             self.setRandomPasIn(freeNeighbors)
 
-    def update(self):
-        self.starve()
-        self.eat()
-        self.move()
-        self.breed()
-
     def starve(self):
         self.currentStarveTime -= 1
 
