@@ -36,6 +36,7 @@ class View(Observer):
             y1 = agent.posY * self.boxSize + self.margin
             x2 = (agent.posX + 1) * self.boxSize - self.margin
             y2 = (agent.posY + 1 ) * self.boxSize - self.margin
+            self.canvas.itemconfig(oval, fill=agent.color)
             self.canvas.coords(oval, x1, y1, x2, y2)
 
     def drawGrid(self, environment):
