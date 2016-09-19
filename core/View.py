@@ -15,7 +15,7 @@ class View(Observer):
 
         self.margin = self.boxSize * 0.2
 
-        self.signalFunc = {"modelCreated":self.onModelCreated,"modelUpdated":self.onModelUpdated,"finished":self.onFinished}
+        self.signalFunc = {"modelCreated":self.onModelCreated,"modelUpdated":self.drawParticles,"finished":self.onFinished}
 
     def onFinished(self, SMA):
         self.canvas.destroy()
@@ -23,7 +23,7 @@ class View(Observer):
 
     def onModelCreated(self, SMA):
         self.drawGrid(SMA.environment)
-        self.drawParticles(SMA.agentlist)
+        self.drawParticles(SMA)
 
     def onModelUpdated(self, SMA):
         for particle in self.particleList:
@@ -46,12 +46,14 @@ class View(Observer):
                     for i in range(environment.getNbCol()):
                         self.canvas.create_rectangle(i * self.boxSize, j * self.boxSize, (i + 1) * self.boxSize, (j + 1 ) * self.boxSize, fill = 'white', width = 1)
 
-    def drawParticles(self, agentlist):
-        self.particleList = []
+    def drawParticles(self, SMA):
+        #self.particleList = []
+        self.canvas.delete("agent")
+        agentlist = SMA.agentlist
         for agent in agentlist:
             x1 = agent.posX * self.boxSize + self.margin
             y1 = agent.posY * self.boxSize + self.margin
             x2 = (agent.posX + 1) * self.boxSize - self.margin
             y2 = (agent.posY + 1 ) * self.boxSize - self.margin
-            oval = self.canvas.create_oval(x1, y1, x2, y2, fill = agent.color, width = 0)
-            self.particleList.append((agent, oval))
+            oval = self.canvas.create_oval(x1, y1, x2, y2, fill = agent.color, width = 0, tag="agent")
+            #self.particleList.append((agent, oval))
