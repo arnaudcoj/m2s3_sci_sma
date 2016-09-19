@@ -29,8 +29,10 @@ class Environment(object):
         return len(self.grid)
 
     def killAgent(self, agent):
-        self.setInCell(agent.posX, agent.posY, None)
-        self.agentlist.remove(agent)
+        if self.grid[agent.posX][agent.posY] == agent:
+            self.setInCell(agent.posX, agent.posY, None)
+        if agent in self.agentlist: #dont know why, we'll see this later
+            self.agentlist.remove(agent)
 
     def addAgent(self, agent, posX, posY):
         self.setInCell(posX, posY, agent)

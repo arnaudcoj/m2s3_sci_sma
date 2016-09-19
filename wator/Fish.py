@@ -23,9 +23,6 @@ class Fish(Agent):
         else :
             self.currentBreedTime += 1
 
-    def die(self):
-        self.dead = True
-
     def isDead(self):
         return self.dead
 

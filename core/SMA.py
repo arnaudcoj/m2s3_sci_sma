@@ -19,17 +19,12 @@ class SMA(Observable):
         if not self.hasFinished() :
             if self.trace:
                 print("Tick", self.tick , "on", self.nbTicks)
-            agentlist = self.environment.agentlist
+            agentlist = list(self.environment.agentlist)
             if self.scheduling == "random":
                 random.shuffle(agentlist)
-            deadAgents = []
             for agent in agentlist:
                 agent.decide()
                 agent.update()
-                if agent.isDead():
-                    deadAgents.append(agent)
 
-            for agent in deadAgents:
-                self.environment.killAgent(agent)
             self.emitSignal("modelUpdated")
             self.tick += 1

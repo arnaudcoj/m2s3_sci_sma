@@ -41,7 +41,7 @@ class Agent(object):
                 if nextCell == None:
                     directions.append(pas)
         return directions
-        
+
     def update(self):
         raise NotImplementedError("Agent.update needs to be implemented")
 
@@ -92,6 +92,9 @@ class Agent(object):
 
                 self.posX = newPosX
                 self.posY = newPosY
+
+    def die(self):
+        self.environment.killAgent(self)
 
     def printTrace(self):
         print(self.name, self.posX, self.posY, self.pasX, self.pasY, sep=",")
