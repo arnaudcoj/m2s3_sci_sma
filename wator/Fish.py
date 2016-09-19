@@ -8,6 +8,7 @@ class Fish(Agent):
         self.previousX = self.posX
         self.previousY = self.posY
         self.color = "Green"
+        self.dead = False
 
     def decide(self):
         freeNeighbors = self.getDirectionsToFreeNeighbors()
@@ -21,6 +22,12 @@ class Fish(Agent):
             self.currentBreedTime = 0
         else :
             self.currentBreedTime += 1
+
+    def die(self):
+        self.dead = True
+
+    def isDead(self):
+        return self.dead
 
     def update(self):
         self.color = "Blue"

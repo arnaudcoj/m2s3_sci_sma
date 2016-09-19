@@ -41,7 +41,7 @@ class Shark(Agent):
         nextCellAgent = self.environment.grid[nextCell[0]][nextCell[1]]
         if nextCellAgent != None and type(nextCellAgent) == Fish:
             #the shark eats
-            self.environment.killAgent(nextCellAgent)
+            nextCellAgent.die()
             self.currentStarveTime = self.starveTime
 
     def breed(self):
