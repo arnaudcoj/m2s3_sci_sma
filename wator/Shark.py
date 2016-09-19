@@ -1,28 +1,34 @@
 from Agent import *
 
 class Shark(Agent):
-    def __init__(self, environment, posX, posY, name, data):
-        super(Shark, self).__init__(environment, posX, posY, name, data)
-        self.breedTime = data["sharkBreedTime"]
-        self.starveTime = data["sharkStarveTime"]
+    def __init__(self, environment, posX, posY, name):
+        super(Shark, self).__init__(environment, posX, posY, name)
+        self.breedTime = self.environment.data["sharkBreedTime"]
+        self.starveTime = self.environment.data["sharkStarveTime"]
+        self.currentBreedTime = 0
+        self.previousX = self.posX
+        self.previousY = self.posY
         self.color = "Pink"
 
     def decide(self):
-        raise NotImplementedError("Shark.decide needs to be implemented")
+        self.setRandomPas()
 
     def starve(self):
-        raise NotImplementedError("Shark.starve needs to be implemented")
+        pass
 
     def eat(self):
-        raise NotImplementedError("Shark.eat needs to be implemented")
-
-    def move(self):
-        raise NotImplementedError("Shark.move needs to be implemented")
+        pass
 
     def breed(self):
-        raise NotImplementedError("Shark.breed needs to be implemented")
+        if (self.previousX != self.posX or self.previousY != self.posY) and self.currentBreedTime >= self.breedTime :
+            baby = Shark(self.environment, self.previousX, self.previousY, str(self.name) + '.1')
+            self.environment.setInCell(self.previousX, self.previousY, baby)
+            self.currentBreedTime = 0
+        else :
+            self.currentBreedTime += 1
 
     def update(self):
+        self.color = "Red"
         self.starve()
         self.eat()
         self.move()
