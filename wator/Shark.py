@@ -43,6 +43,8 @@ class Shark(Agent):
             #the shark eats
             nextCellAgent.die()
             self.currentStarveTime = self.starveTime
+        elif self.currentStarveTime < 0:
+            self.die()
 
     def breed(self):
         if (self.previousX != self.posX or self.previousY != self.posY) and self.currentBreedTime >= self.breedTime :
