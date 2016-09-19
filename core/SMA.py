@@ -26,5 +26,12 @@ class SMA(Observable):
             for agent in agentlist:
                 agent.decide()
                 agent.update()
+                if agent.isDead():
+                    killAgent()
             self.emitSignal("modelUpdated")
             self.tick += 1
+
+    def killAgent(self, agent):
+        self.environment.setInCell(agent.posX, agent.posY, None)
+        self.agentlist.remove(agent)
+        self.modelUpdated("removedAgent", agent)

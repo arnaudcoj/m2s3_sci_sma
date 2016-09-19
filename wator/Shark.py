@@ -18,9 +18,8 @@ class Shark(Agent):
         else:
             self.currentStarveTime -= 1
 
-    def die(self):
-        self.environment.setInCell(self.posX, self.posY, None)
-        raise NotImplementedError("Shark.die needs to be implemented")
+    def isDead(self):
+        raise NotImplementedError("Shark.isDead needs to be implemented")
 
 
     def eat(self):
