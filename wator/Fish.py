@@ -12,7 +12,6 @@ class Fish(Agent):
     def decide(self):
         freeNeighbors = self.getDirectionsToFreeNeighbors()
         if freeNeighbors :
-            print("oui")
             self.setRandomPasIn(freeNeighbors)
 
     def breed(self):

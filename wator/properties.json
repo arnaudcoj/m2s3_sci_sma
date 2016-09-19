@@ -5,7 +5,7 @@
   "canvasSizeX":500,
   "canvasSizeY":500,
   "boxSize":0,
-  "delay":100,
+  "delay":200,
   "scheduling":0,
   "nbTicks":100,
   "grid":true,

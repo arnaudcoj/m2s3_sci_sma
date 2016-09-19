@@ -12,10 +12,26 @@ class Shark(Agent):
         self.previousY = self.posY
         self.color = "Pink"
 
+    def findFishDirection(self):
+        pasList = [(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
+        random.shuffle(pasList)
+        for pas in pasList :
+            coords = self.findNextCellFromPas(pas[0], pas[1])
+            if(coords) :
+                cell = self.environment.grid[coords[0]][coords[1]]
+                if cell :
+                    return pas
+        return None
+
     def decide(self):
-        freeNeighbors = self.getDirectionsToFreeNeighbors()
-        if freeNeighbors :
-            self.setRandomPasIn(freeNeighbors)
+        direction = self.findFishDirection()
+        if direction == None :
+            freeNeighbors = self.getDirectionsToFreeNeighbors()
+            if freeNeighbors :
+                self.setRandomPasIn(freeNeighbors)
+        else :
+            self.pasX = direction[0]
+            self.pasY = direction[1]
 
     def starve(self):
         self.currentStarveTime -= 1
