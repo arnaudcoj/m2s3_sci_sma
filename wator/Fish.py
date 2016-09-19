@@ -7,7 +7,7 @@ class Fish(Agent):
         self.color = "Green"
 
     def decide(self):
-        raise NotImplementedError("Fish.decide needs to be implemented")
+        pass
 
     def move(self):
         raise NotImplementedError("Fish.move needs to be implemented")
@@ -16,5 +16,6 @@ class Fish(Agent):
         raise NotImplementedError("Fish.breed needs to be implemented")
 
     def update(self):
-        self.move()
-        self.breed()
+        #self.move()
+        #self.breed()
+        pass

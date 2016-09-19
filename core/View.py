@@ -29,6 +29,9 @@ class View(Observer):
         for particle in self.particleList:
             agent = particle[0]
             oval = particle[1]
+            if agent.isDead():
+                self.canvas.delete(oval)
+                self.particleList.remove(particle)
             x1 = agent.posX * self.boxSize + self.margin
             y1 = agent.posY * self.boxSize + self.margin
             x2 = (agent.posX + 1) * self.boxSize - self.margin

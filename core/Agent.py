@@ -34,6 +34,9 @@ class Agent(object):
     def decide(self):
         raise NotImplementedError("Agent.decide needs to be implemented")
 
+    def isDead(self):
+        return False
+
     def findNextCell(self):
         nextCellX = self.posX + self.pasX
         nextCellY = self.posY + self.pasY
