@@ -40,7 +40,7 @@ class Agent(object):
                 print(nextCoords)
                 nextCell = self.environment.grid[nextCoords[0]][nextCoords[1]]
                 print(nextCell)
-                if nextCell :
+                if nextCell == None:
                     directions.append(pas)
         return directions
         
