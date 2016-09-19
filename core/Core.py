@@ -55,29 +55,28 @@ class Core(object):
 
     def createModel(self):
         self.createEnvironment()
-        agentlist = []
-        self.populate(agentlist)
-        self.createSMA(agentlist)
+        self.populate()
+        self.createSMA()
 
     def createEnvironment(self):
-        self.environment = Environment(self.data)
+        self.environment = Environment(self.data, [])
 
-    def populate(self, agentlist):
+    def populate(self):
         raise NotImplementedError("Core.populate needs to be implemented")
 
-    def createAgent(self, agentType, agentlist, x, y, name):
+    def createAgent(self, agentType, x, y, name):
         agent = agentType(self.environment, x, y, name)
-        agentlist.append(agent)
+        self.environment.agentlist.append(agent)
         self.environment.setInCell(x, y, agent)
         if self.data["trace"]:
             agent.printTrace()
 
-    def createSMA(self, agentlist):
+    def createSMA(self):
         scheduling = self.data["scheduling"]
         nbTicks = self.data["nbTicks"]
         trace = self.data["trace"]
 
-        self.SMA = SMA(self.environment, agentlist, scheduling, nbTicks, trace)
+        self.SMA = SMA(self.environment, scheduling, nbTicks, trace)
 
     def createWindow(self):
         self.window = Tk()

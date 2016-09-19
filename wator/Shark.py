@@ -41,13 +41,13 @@ class Shark(Agent):
         nextCellAgent = self.environment.grid[nextCell[0]][nextCell[1]]
         if nextCellAgent != None and type(nextCellAgent) == Fish:
             #the shark eats
-            self.environment.setInCell(nextCell[0], nextCell[1], None)
+            self.environment.killAgent(nextCellAgent)
             self.currentStarveTime = self.starveTime
 
     def breed(self):
         if (self.previousX != self.posX or self.previousY != self.posY) and self.currentBreedTime >= self.breedTime :
             baby = Shark(self.environment, self.previousX, self.previousY, str(self.name) + '.1')
-            self.environment.setInCell(self.previousX, self.previousY, baby)
+            self.environment.addAgent(baby, self.previousX, self.previousY)
             self.currentBreedTime = 0
         else :
             self.currentBreedTime += 1
@@ -58,6 +58,6 @@ class Shark(Agent):
         self.eat()
         self.move()
         self.breed()
-        
+
     def isDead(self):
-        return self.currentStarveTime <= 0
+        return self.currentStarveTime < 0

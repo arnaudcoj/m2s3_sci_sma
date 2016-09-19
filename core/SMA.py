@@ -4,13 +4,12 @@ from Observable import *
 
 class SMA(Observable):
     """docstring for SMA."""
-    def __init__(self, environment, agentlist, scheduling, nbTicks, trace):
+    def __init__(self, environment, scheduling, nbTicks, trace):
         super(SMA, self).__init__()
         self.scheduling = scheduling
         self.nbTicks = nbTicks
         self.trace = trace
         self.environment = environment
-        self.agentlist = agentlist
         self.tick = 1
 
     def hasFinished(self):
@@ -20,7 +19,7 @@ class SMA(Observable):
         if not self.hasFinished() :
             if self.trace:
                 print("Tick", self.tick , "on", self.nbTicks)
-            agentlist = self.agentlist
+            agentlist = self.environment.agentlist
             if self.scheduling == "random":
                 random.shuffle(agentlist)
             deadAgents = []
@@ -29,11 +28,8 @@ class SMA(Observable):
                 agent.update()
                 if agent.isDead():
                     deadAgents.append(agent)
-            for agent in deadAgents :
-                self.killAgent(agent)
+
+            for agent in deadAgents:
+                self.environment.killAgent(agent)
             self.emitSignal("modelUpdated")
             self.tick += 1
-
-    def killAgent(self, agent):
-        self.environment.setInCell(agent.posX, agent.posY, None)
-        self.agentlist.remove(agent)

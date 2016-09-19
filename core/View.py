@@ -25,19 +25,19 @@ class View(Observer):
         self.drawGrid(SMA.environment)
         self.drawParticles(SMA)
 
-    def onModelUpdated(self, SMA):
-        for particle in self.particleList:
-            agent = particle[0]
-            oval = particle[1]
-            if agent.isDead():
-                self.canvas.delete(oval)
-                self.particleList.remove(particle)
-            x1 = agent.posX * self.boxSize + self.margin
-            y1 = agent.posY * self.boxSize + self.margin
-            x2 = (agent.posX + 1) * self.boxSize - self.margin
-            y2 = (agent.posY + 1 ) * self.boxSize - self.margin
-            self.canvas.itemconfig(oval, fill=agent.color)
-            self.canvas.coords(oval, x1, y1, x2, y2)
+#    def onModelUpdated(self, SMA):
+#        for particle in self.particleList:
+#            agent = particle[0]
+#            oval = particle[1]
+#            if agent.isDead():
+#                self.canvas.delete(oval)
+#                self.particleList.remove(particle)
+#            x1 = agent.posX * self.boxSize + self.margin
+#            y1 = agent.posY * self.boxSize + self.margin
+#            x2 = (agent.posX + 1) * self.boxSize - self.margin
+#            y2 = (agent.posY + 1 ) * self.boxSize - self.margin
+#            self.canvas.itemconfig(oval, fill=agent.color)
+#            self.canvas.coords(oval, x1, y1, x2, y2)
 
     def drawGrid(self, environment):
         if self.grid:
@@ -49,7 +49,7 @@ class View(Observer):
     def drawParticles(self, SMA):
         #self.particleList = []
         self.canvas.delete("agent")
-        agentlist = SMA.agentlist
+        agentlist = SMA.environment.agentlist
         for agent in agentlist:
             x1 = agent.posX * self.boxSize + self.margin
             y1 = agent.posY * self.boxSize + self.margin

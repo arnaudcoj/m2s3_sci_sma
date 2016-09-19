@@ -5,7 +5,7 @@
   "canvasSizeX":500,
   "canvasSizeY":500,
   "boxSize":0,
-  "delay":200,
+  "delay":1000,
   "scheduling":0,
   "nbTicks":100,
   "grid":true,
@@ -14,7 +14,7 @@
   "refresh":1,
   "autoquit":false,
   "nbSharks":2,
-  "nbFishes":5,
+  "nbFishes":2,
   "sharkBreedTime":10,
   "sharkStarveTime":3,
   "fishBreedTime":2

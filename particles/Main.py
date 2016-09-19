@@ -14,7 +14,7 @@ class Main(Core):
     def __init__(self, nbParticles=None):
         super(Main, self).__init__()
 
-    def populate(self, agentlist):
+    def populate(self):
         #Fetch data
         nbParticles = self.data["nbParticles"]
 
@@ -32,7 +32,7 @@ class Main(Core):
         #Pop a free cell from the list then create and place an agent in this cell
         for i in range(nbParticles):
             position = freeCells.pop()
-            self.createAgent(Particle, agentlist, position[0], position[1], i)
+            self.createAgent(Particle, position[0], position[1], i)
 
     def setDefaultProperties(self):
         if not "gridSizeX" in self.data:

@@ -1,8 +1,9 @@
 class Environment(object):
     """docstring for Environment"""
-    def __init__(self, data):
+    def __init__(self, data, agentlist):
         super(Environment, self).__init__()
         self.data = data
+        self.agentlist = agentlist
         self.initGrid()
 
     def initGrid(self):
@@ -26,6 +27,14 @@ class Environment(object):
 
     def getNbCol(self):
         return len(self.grid)
+
+    def killAgent(self, agent):
+        self.setInCell(agent.posX, agent.posY, None)
+        self.agentlist.remove(agent)
+
+    def addAgent(self, agent, posX, posY):
+        self.setInCell(posX, posY, agent)
+        self.agentlist.append(agent)
 
     def printASCII(self):
         #First Line
