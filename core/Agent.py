@@ -80,7 +80,7 @@ class Agent(object):
         return (nextCellX, nextCellY)
 
     def findNextCell(self):
-        self.findNextCellFromPas(self.pasX, self.pasY)
+        return self.findNextCellFromPas(self.pasX, self.pasY)
 
     def move(self):
         nextCoords = self.findNextCell()
