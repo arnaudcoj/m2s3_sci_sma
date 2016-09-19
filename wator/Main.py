@@ -6,7 +6,8 @@ sys.path.append('../core')
 from Core import *
 from Environment import *
 from SMA import *
-from Particle import *
+from Shark import *
+from Fish import *
 from View import *
 
 class Main(Core):
@@ -16,23 +17,29 @@ class Main(Core):
 
     def populate(self, agentlist):
         #Fetch data
-        nbParticles = self.data["nbParticles"]
+        nbSharks = self.data["nbSharks"]
+        nbFishes = self.data["nbFishes"]
 
         #Fetch the free cells from the environment
         freeCells = self.environment.getFreeCells()
 
         #Check if there are enough cells for each particle
-        if len(freeCells) < nbParticles :
+        if len(freeCells) < nbSharks + nbFishes :
             print("Error ! There are more particles than free cells !")
+            print("nbSharks", nbSharks, "nbFishes", nbFishes)
             return
 
         #Shuffle the list
         random.shuffle(freeCells)
 
         #Pop a free cell from the list then create and place an agent in this cell
-        for i in range(nbParticles):
+        for i in range(nbSharks):
             position = freeCells.pop()
-            self.createAgent(Particle, agentlist, position[0], position[1], i)
+            self.createAgent(Shark, agentlist, position[0], position[1], i)
+
+        for i in range(nbFishes):
+            position = freeCells.pop()
+            self.createAgent(Fish, agentlist, position[0], position[1], i)
 
     def setDefaultProperties(self):
         if not "gridSizeX" in self.data:
@@ -68,7 +75,17 @@ class Main(Core):
         if not "profile" in self.data:
             self.data["profile"] = False
         if not "profileStep" in self.data:
-            self.data["profileStep"] = 40
+            self.data["profileStep"] = None
+        if not "nbSharks" in self.data:
+            self.data["nbSharks"] = 5
+        if not "nbFishes" in self.data:
+            self.data["nbFishes"] = 20
+        if not "sharkBreedTime" in self.data:
+            self.data["sharkBreedTime"] = 10
+        if not "sharkStarveTime" in self.data:
+            self.data["sharkStarveTime"] = 3
+        if not "fishBreedTime" in self.data:
+            self.data["fishBreedTime"] = 2
 
 if __name__ == '__main__':
     main(Main)

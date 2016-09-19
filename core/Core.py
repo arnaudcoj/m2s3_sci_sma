@@ -4,7 +4,7 @@ import random
 
 from Environment import *
 from SMA import *
-from Particle import *
+from Agent import *
 from View import *
 
 class Core(object):
@@ -17,6 +17,8 @@ class Core(object):
             fileName = sys.argv[1]
             self.loadPropertiesFromJSON(fileName)
         self.setDefaultProperties()
+
+        self.initRandom()
 
         self.delay = self.data["delay"]
 
@@ -31,6 +33,17 @@ class Core(object):
 
     def setDefaultProperties(self):
         raise NotImplementedError("Core.setDefaultProperties to be implemented")
+
+    def initRandom(self):
+        seed = self.data["seed"]
+        #Check if there is a given seed
+        if seed == 0 or seed == "0" :
+            #if not, create a random seed
+            seed = random.randint(0, sys.maxsize)
+
+        #Initialize the random engine with the seed
+        random.seed(seed)
+
 
     # Creation methods
 
@@ -55,6 +68,13 @@ class Core(object):
 
     def populate(self, agentlist):
         raise NotImplementedError("Core.populate needs to be implemented")
+
+    def createAgent(self, agentType, agentlist, x, y, name):
+        agent = agentType(self.environment, x, y, name, self.data["torus"], self.data["trace"])
+        agentlist.append(agent)
+        self.environment.setInCell(x, y, agent)
+        if self.data["trace"]:
+            agent.printTrace()
 
     def createSMA(self, agentlist):
         scheduling = self.data["scheduling"]

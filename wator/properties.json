@@ -12,8 +12,10 @@
   "trace":false,
   "seed":"ckfrt",
   "refresh":1,
-  "nbParticles":10000,
   "autoquit":false,
-  "profile":true,
-  "profileStep":40
+  "nbSharks":5,
+  "nbFishes":200,
+  "sharkBreedTime":10,
+  "sharkStarveTime":3,
+  "fishBreedTime":2
 }
