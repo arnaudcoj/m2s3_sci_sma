@@ -17,7 +17,7 @@ class Main(Core):
 
     def populate(self):
 
-        keyListener = KeyListener(self.window)
+        self.keyListener = KeyListener(self.window)
 
         nbAvatars = 1
 
@@ -35,16 +35,20 @@ class Main(Core):
         #Pop a free cell from the list then create and place an agent in this cell
         for i in range(nbAvatars):
             position = freeCells.pop()
-            self.createAgent(Avatar, position[0], position[1], "Avatar" + str(i), keyListener)
+            self.createAgent(Avatar, position[0], position[1], "Avatar" + str(i))
 
 
-    def createAgent(self, agentType, x, y, name, keyListener):
+    def createAgent(self, agentType, x, y, name):
         print("override")
-        agent = agentType(self.environment, x, y, name, keyListener)
+        agent = agentType(self.environment, x, y, name, self.keyListener)
         self.environment.agentlist.append(agent)
         self.environment.setInCell(x, y, agent)
         if self.data["trace"]:
             agent.printTrace()
+
+    def update(self):
+        super().update()
+        self.keyListener.canBeCleared = True
 
     def setDefaultProperties(self):
         if not "gridSizeX" in self.data:
