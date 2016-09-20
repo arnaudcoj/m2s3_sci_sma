@@ -62,15 +62,15 @@ class Main(Core):
         if not "scheduling" in self.data:
             self.data["scheduling"] = "sequential"
         if not "nbTicks" in self.data:
-            self.data["nbTicks"] = 1000
+            self.data["nbTicks"] = 0
         if not "grid" in self.data:
             self.data["grid"] = True
         if not "trace" in self.data:
-            self.data["trace"] = True
+            self.data["trace"] = False
         if not "seed" in self.data:
             self.data["seed"] = 0
         if not "refresh" in self.data:
-            self.data["refresh"] = 1
+            self.data["refresh"] = 100
         if not "autoquit" in self.data:
             self.data["autoquit"] = False
         if not "nbSharks" in self.data:
