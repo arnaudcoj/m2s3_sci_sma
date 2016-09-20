@@ -35,11 +35,11 @@ class Main(Core):
         #Pop a free cell from the list then create and place an agent in this cell
         for i in range(nbSharks):
             position = freeCells.pop()
-            self.createAgent(Shark, position[0], position[1], i)
+            self.createAgent(Shark, position[0], position[1], "Shark" + str(i))
 
         for i in range(nbFishes):
             position = freeCells.pop()
-            self.createAgent(Fish, position[0], position[1], i)
+            self.createAgent(Fish, position[0], position[1], "Fish" + str(i))
 
         self.environment.nbSharks = nbSharks
         self.environment.nbFishes = nbFishes
