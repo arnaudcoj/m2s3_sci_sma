@@ -35,6 +35,9 @@ class Shark(Agent):
 
     def starve(self):
         self.currentStarveTime -= 1
+        if self.currentStarveTime < 0:
+            self.die()
+            self.environment.nbSharks -= 1
 
     def eat(self):
         coords = self.findNextCell()
@@ -45,9 +48,6 @@ class Shark(Agent):
                 nextCellAgent.die()
                 self.environment.nbFishes -= 1
                 self.currentStarveTime = self.starveTime
-            elif self.currentStarveTime < 0:
-                self.die()
-                self.environment.nbSharks -= 1
 
     def breed(self):
         if (self.previousX != self.posX or self.previousY != self.posY) and self.currentBreedTime >= self.breedTime :
@@ -63,9 +63,10 @@ class Shark(Agent):
         self.previousX = self.posX
         self.previousY = self.posY
         self.starve()
-        self.eat()
-        self.move()
-        self.breed()
+        if not self.isDead() :
+            self.eat()
+            self.move()
+            self.breed()
         self.previousX = self.posX
         self.previousY = self.posY
 
