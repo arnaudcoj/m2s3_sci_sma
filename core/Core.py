@@ -48,9 +48,9 @@ class Core(object):
     # Creation methods
 
     def createSystem(self):
-        self.createModel()
         self.createWindow()
         self.createView()
+        self.createModel()
         self.SMA.emitSignal("modelCreated")
 
     def createModel(self):
@@ -77,6 +77,7 @@ class Core(object):
         trace = self.data["trace"]
 
         self.SMA = SMA(self.environment, scheduling, nbTicks, trace)
+        self.SMA.addObserver(self.view)
 
     def createWindow(self):
         self.window = Tk()
@@ -91,7 +92,6 @@ class Core(object):
             boxSize = min(self.data["canvasSizeX"], self.data["canvasSizeY"]) / max(self.data["gridSizeY"], self.data["gridSizeX"])
 
         self.view = View(self.window, self.canvas, self.data["gridSizeX"], self.data["gridSizeY"], boxSize, self.data["grid"], self.data["refresh"])
-        self.SMA.addObserver(self.view)
 
 
     #Execution methods

@@ -5,10 +5,6 @@ class Environment(object):
         self.data = data
         self.agentlist = agentlist
         self.initGrid()
-        self.nbFishes = 0
-        self.nbSharks = 0
-        self.fishID = self.nbFishes
-        self.sharkID = self.nbSharks 
 
     def initGrid(self):
         self.grid = []

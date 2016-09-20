@@ -26,9 +26,6 @@ class SMA(Observable):
                 if not agent.isDead():
                     agent.decide()
                     agent.update()
-            if self.trace:
-                print("NbFishes", self.environment.nbFishes)
-                print("NbSharks", self.environment.nbSharks)
 
             #print(self.tick, self.environment.nbFishes, self.environment.nbSharks, self.environment.nbFishes / self.environment.nbSharks, sep=",")
 
