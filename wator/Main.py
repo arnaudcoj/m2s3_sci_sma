@@ -68,9 +68,9 @@ class Main(Core):
         if not "trace" in self.data:
             self.data["trace"] = False
         if not "seed" in self.data:
-            self.data["seed"] = 0
+            self.data["seed"] = "toto"
         if not "refresh" in self.data:
-            self.data["refresh"] = 100
+            self.data["refresh"] = 1
         if not "autoquit" in self.data:
             self.data["autoquit"] = False
         if not "nbSharks" in self.data:
