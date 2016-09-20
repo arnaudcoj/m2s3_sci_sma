@@ -101,19 +101,19 @@ class Core(object):
         self.window.after(self.delay, self.update)
         self.window.mainloop()
 
-    def profile(self):
-        nbTicks = self.data["nbTicks"]
-        nbParticles = self.data["nbParticles"]
-        profileStep = self.data["profileStep"]
-        for i in range(0, nbParticles +1, int(nbParticles / profileStep)):
-            self.data["nbParticles"] = i
-            startTime = time.clock()
-            self.run()
-            endTime = time.clock()
-            executionTime = endTime - startTime
-            tps = nbTicks / executionTime
-            print("%d,%f" % (i, tps))
-            self.clearSystem()
+    #def profile(self):
+        #nbTicks = self.data["nbTicks"]
+        #nbParticles = self.data["nbParticles"]
+        #profileStep = self.data["profileStep"]
+        #for i in range(0, nbParticles +1, int(nbParticles / profileStep)):
+            #self.data["nbParticles"] = i
+            #startTime = time.clock()
+            #self.run()
+            #endTime = time.clock()
+            #executionTime = endTime - startTime
+            #tps = nbTicks / executionTime
+            #print("%d,%f" % (i, tps))
+            #self.clearSystem()
 
     def update(self):
         if self.SMA.hasFinished() and self.data["autoquit"]:
@@ -133,10 +133,10 @@ class Core(object):
 
 def runSystem(systemType):
     system = systemType()
-    if systemType == "Particle" and system.data["profile"]:
-        system.profile()
-    else:
-        system.run()
+    #if systemType == "Particle" and system.data["profile"]:
+     #   system.profile()
+    #else:
+    system.run()
 
 def main(systemType):
     runSystem(systemType)

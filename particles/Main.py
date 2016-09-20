@@ -65,10 +65,10 @@ class Main(Core):
             self.data["nbParticles"] = 10
         if not "autoquit" in self.data:
             self.data["autoquit"] = False
-        if not "profile" in self.data:
-            self.data["profile"] = False
-        if not "profileStep" in self.data:
-            self.data["profileStep"] = 40
+        #if not "profile" in self.data:
+         #   self.data["profile"] = False
+        #if not "profileStep" in self.data:
+         #   self.data["profileStep"] = 40
 
 if __name__ == '__main__':
     main(Main)
