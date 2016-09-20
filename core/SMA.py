@@ -30,5 +30,7 @@ class SMA(Observable):
                 print("NbFishes", self.environment.nbFishes)
                 print("NbSharks", self.environment.nbSharks)
 
+            #print(self.tick, self.environment.nbFishes, self.environment.nbSharks, self.environment.nbFishes / self.environment.nbSharks, sep=",")
+
             self.emitSignal("modelUpdated")
             self.tick += 1
