@@ -66,7 +66,7 @@ class Main(Core):
         if not "grid" in self.data:
             self.data["grid"] = True
         if not "trace" in self.data:
-            self.data["trace"] = False
+            self.data["trace"] = True
         if not "seed" in self.data:
             self.data["seed"] = "toto"
         if not "refresh" in self.data:

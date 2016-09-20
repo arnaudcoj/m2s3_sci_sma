@@ -17,7 +17,7 @@ class SMA(Observable):
 
     def run(self):
         if not self.hasFinished() :
-            if not self.trace and self.environment.nbSharks > 0:
+            if self.trace :
                 print("Tick", self.tick , "on", self.nbTicks)
             agentlist = list(self.environment.agentlist)
             if self.scheduling == "random":

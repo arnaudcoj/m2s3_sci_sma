@@ -1,6 +1,6 @@
 {
-  "gridSizeX":31,
-  "gridSizeY":31,
+  "gridSizeX":50,
+  "gridSizeY":50,
   "torus":true,
   "canvasSizeX":500,
   "canvasSizeY":500,
@@ -10,7 +10,7 @@
   "nbTicks":0,
   "grid":true,
   "trace":true,
-  "seed":"ckfrt",
+  "seed":"toto",
   "refresh":1,
   "autoquit":false,
   "nbSharks":5,
