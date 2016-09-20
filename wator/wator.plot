@@ -7,9 +7,9 @@ set datafile separator ','
 plot 'evolution.csv' using 2 title 'Fishes' with lines, 'evolution.csv' using 3 title 'Sharks' with lines
 
 set title 'Evolution du rapport Fishes/Shark en fonction du temps'
-set xlabel 'Temps d Execution (Ticks)'
-set ylabel 'Rapport Fish/Shark'
+set xlabel 'Fishes'
+set ylabel 'Sharks'
 set term png
 set output 'evolution_2.png'
 set datafile separator ','
-plot 'evolution.csv' using 4 title 'Fishes/Sharks' with lines
+plot 'evolution.csv' using 2:3 title 'Fishes/Sharks' with lines

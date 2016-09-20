@@ -7,7 +7,7 @@
   "boxSize":0,
   "delay":1,
   "scheduling":0,
-  "nbTicks":1000,
+  "nbTicks":0,
   "grid":true,
   "trace":false,
   "seed":"toto",
