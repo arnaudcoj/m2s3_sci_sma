@@ -20,8 +20,13 @@ class Fish(Agent):
             baby = Fish(self.environment, self.previousX, self.previousY, str(self.name) + '.1')
             self.environment.addAgent(baby, self.previousX, self.previousY)
             self.currentBreedTime = 0
+            self.environment.nbFishes += 1
         else :
             self.currentBreedTime += 1
+
+    def die(self):
+        self.environment.killAgent(self)
+        self.dead = True
 
     def isDead(self):
         return self.dead

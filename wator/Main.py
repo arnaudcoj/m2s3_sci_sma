@@ -41,6 +41,9 @@ class Main(Core):
             position = freeCells.pop()
             self.createAgent(Fish, position[0], position[1], i)
 
+        self.environment.nbSharks = nbSharks
+        self.environment.nbFishes = nbFishes
+
     def setDefaultProperties(self):
         if not "gridSizeX" in self.data:
             self.data["gridSizeX"] = 50
@@ -55,7 +58,7 @@ class Main(Core):
         if not "boxSize" in self.data:
             self.data["boxSize"] = 0
         if not "delay" in self.data:
-            self.data["delay"] = 100
+            self.data["delay"] = 1
         if not "scheduling" in self.data:
             self.data["scheduling"] = "sequential"
         if not "nbTicks" in self.data:

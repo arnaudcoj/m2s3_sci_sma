@@ -23,8 +23,12 @@ class SMA(Observable):
             if self.scheduling == "random":
                 random.shuffle(agentlist)
             for agent in agentlist:
-                agent.decide()
-                agent.update()
+                if not agent.isDead():
+                    agent.decide()
+                    agent.update()
+            if self.trace:
+                print("NbFishes", self.environment.nbFishes)
+                print("NbSharks", self.environment.nbSharks)
 
             self.emitSignal("modelUpdated")
             self.tick += 1

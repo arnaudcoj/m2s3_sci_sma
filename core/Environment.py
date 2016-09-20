@@ -5,6 +5,8 @@ class Environment(object):
         self.data = data
         self.agentlist = agentlist
         self.initGrid()
+        self.nbFishes = 0
+        self.nbSharks = 0
 
     def initGrid(self):
         self.grid = []
@@ -29,6 +31,7 @@ class Environment(object):
         return len(self.grid)
 
     def killAgent(self, agent):
+        agent.printTrace()
         if self.grid[agent.posX][agent.posY] == agent:
             self.setInCell(agent.posX, agent.posY, None)
         if agent in self.agentlist: #dont know why, we'll see this later
