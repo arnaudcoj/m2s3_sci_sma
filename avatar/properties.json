@@ -1,0 +1,16 @@
+{
+  "gridSizeX":50,
+  "gridSizeY":50,
+  "torus":false,
+  "canvasSizeX":800,
+  "canvasSizeY":800,
+  "boxSize":0,
+  "delay":100,
+  "scheduling":0,
+  "nbTicks":0,
+  "grid":true,
+  "trace":false,
+  "seed":"toto",
+  "refresh":1,
+  "autoquit":false
+}

@@ -13,3 +13,24 @@ class KeyListener(object):
     def onDirectionPressed(self, event):
         self.lastDirectionPressed = event.keysym
         print(event.keysym)
+
+    def onHunterAccelerate(self):
+        pass
+
+    def onHunterDecelerate(self):
+        pass
+
+    def onAvatarAccelerate(self):
+        pass
+
+    def onAvatarDecelerate(self):
+        pass
+
+    def onSimulationAccelerate(self):
+        pass
+
+    def onSimulationDecelerate(self):
+        pass
+
+    def onStartPressed(self):
+        pass
