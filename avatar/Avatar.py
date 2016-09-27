@@ -8,16 +8,17 @@ class Avatar(Agent):
         self.keyListener = keyListener
 
     def decide(self):
-        keysPressed = self.keyListener.lastDirPressed
+        UDPressed = self.keyListener.UDPressed
+        LRPressed = self.keyListener.LRPressed
         self.pasX = 0
         self.pasY = 0
-        if 'Up' in keysPressed:
+        if UDPressed == 'Up':
             self.pasY -= 1
-        if 'Down' in keysPressed:
+        elif UDPressed == 'Down':
             self.pasY += 1
-        if 'Left' in keysPressed:
+        if LRPressed == 'Left':
             self.pasX -= 1
-        if 'Right' in keysPressed:
+        elif LRPressed == 'Right':
             self.pasX += 1
 
     def update(self):
