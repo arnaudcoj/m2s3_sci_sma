@@ -17,8 +17,7 @@ class Fish(Agent):
 
     def breed(self):
         if (self.previousX != self.posX or self.previousY != self.posY) and self.currentBreedTime >= self.breedTime :
-            self.environment.fishID += 1
-            baby = Fish(self.environment, self.previousX, self.previousY, "Fish" + str(self.environment.fishID))
+            baby = Fish(self.environment, self.previousX, self.previousY, None)
             self.environment.addAgent(baby, self.previousX, self.previousY)
             self.currentBreedTime = 0
             self.environment.nbFishes += 1

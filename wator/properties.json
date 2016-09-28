@@ -9,7 +9,7 @@
   "scheduling":0,
   "nbTicks":0,
   "grid":true,
-  "trace":false,
+  "trace":true,
   "seed":"toto",
   "refresh":1,
   "autoquit":false,

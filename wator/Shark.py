@@ -51,8 +51,7 @@ class Shark(Agent):
 
     def breed(self):
         if (self.previousX != self.posX or self.previousY != self.posY) and self.currentBreedTime >= self.breedTime :
-            self.environment.sharkID += 1
-            baby = Shark(self.environment, self.previousX, self.previousY, "Shark" + str(self.environment.sharkID))
+            baby = Shark(self.environment, self.previousX, self.previousY, None)
             self.environment.addAgent(baby, self.previousX, self.previousY)
             self.currentBreedTime = 0
             self.environment.nbSharks += 1
