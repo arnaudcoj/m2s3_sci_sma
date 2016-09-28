@@ -44,6 +44,11 @@ class Main(Core):
         self.environment.nbSharks = nbSharks
         self.environment.nbFishes = nbFishes
 
+    def update(self):
+        super().update()
+        if self.data["trace"]:
+            print(self.SMA.tick, self.environment.nbFishes, self.environment.nbSharks, self.environment.nbFishes / self.environment.nbSharks, sep=",")
+
     def setDefaultProperties(self):
         if not "gridSizeX" in self.data:
             self.data["gridSizeX"] = 50
