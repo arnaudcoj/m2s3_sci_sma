@@ -68,8 +68,6 @@ class Core(object):
         agent = agentType(self.environment, x, y, name)
         self.environment.agentlist.append(agent)
         self.environment.setInCell(x, y, agent)
-        if self.data["trace"]:
-            agent.printTrace()
 
     def createSMA(self):
         scheduling = self.data["scheduling"]

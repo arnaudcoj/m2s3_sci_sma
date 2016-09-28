@@ -9,6 +9,8 @@ class Particle(Agent):
         super(Particle, self).__init__(environment, posX, posY, name)
         self.setRandomColor()
         self.setRandomPas()
+        if self.trace:
+            self.printTrace()
 
     def decide(self):
         nextCoords = self.findNextCell()

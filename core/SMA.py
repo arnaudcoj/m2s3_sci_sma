@@ -8,7 +8,6 @@ class SMA(Observable):
         super(SMA, self).__init__()
         self.scheduling = scheduling
         self.nbTicks = nbTicks
-        self.trace = trace
         self.environment = environment
         self.tick = 1
 
@@ -17,8 +16,6 @@ class SMA(Observable):
 
     def run(self):
         if not self.hasFinished() :
-            if self.trace :
-                print("Tick", self.tick , "on", self.nbTicks)
             agentlist = list(self.environment.agentlist)
             if self.scheduling == "random":
                 random.shuffle(agentlist)
@@ -26,8 +23,6 @@ class SMA(Observable):
                 if not agent.isDead():
                     agent.decide()
                     agent.update()
-
-            #print(self.tick, self.environment.nbFishes, self.environment.nbSharks, self.environment.nbFishes / self.environment.nbSharks, sep=",")
 
             self.emitSignal("modelUpdated")
             self.tick += 1

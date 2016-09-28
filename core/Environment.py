@@ -29,8 +29,6 @@ class Environment(object):
         return len(self.grid)
 
     def killAgent(self, agent):
-        if self.data["trace"] :
-            agent.printTrace()
         self.setInCell(agent.posX, agent.posY, None)
         if agent in self.agentlist: #dont know why, we'll see this later
             self.agentlist.remove(agent)
