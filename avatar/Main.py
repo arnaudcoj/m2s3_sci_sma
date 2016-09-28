@@ -35,12 +35,12 @@ class Main(Core):
         #Pop a free cell from the list then create and place an agent in this cell
         for i in range(nbAvatars):
             position = freeCells.pop()
-            self.createAvatar(Avatar, position[0], position[1], "Avatar" + str(i))
+            self.createAvatar(position[0], position[1], "Avatar" + str(i))
 
 
     def createAvatar(self, x, y, name):
         print("override")
-        agent = agentType(self.environment, x, y, name, self.keyListener)
+        agent = Avatar(self.environment, x, y, name, self.keyListener)
         self.environment.agentlist.append(agent)
         self.environment.setInCell(x, y, agent)
 

@@ -1,4 +1,5 @@
 from Agent import *
+from Observable import *
 
 class Avatar(Agent):
     """docstring for Avatar"""
@@ -6,6 +7,7 @@ class Avatar(Agent):
         super(Avatar, self).__init__(environment, posX, posY, name)
         self.color = "Purple"
         self.keyListener = keyListener
+        self.avatarNotifier = AvatarNotifier()
 
     def decide(self):
         lastDirectionPressed = self.keyListener.lastDirectionPressed
@@ -22,3 +24,10 @@ class Avatar(Agent):
 
     def update(self):
         self.move()
+        self.avatarNotifier.emitSignal("avatarUpdated")
+
+class AvatarNotifier(Observable):
+    """docstring for AvatarNotifier."""
+    def __init__(self):
+        super(AvatarNotifier, self).__init__()
+        self.dijkstraMatrix = None #compute dijkstraMatrix
