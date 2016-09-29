@@ -31,6 +31,16 @@ class Agent(object):
         self.pasX = pas[0]
         self.pasY = pas[1]
 
+    def getDirectionsToNeighbors(self):
+        directions = []
+        pasList = [(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
+        for pas in pasList :
+            nextCoords = self.findNextCellFromPas(pas[0], pas[1])
+            if(nextCoords) :
+                nextCell = self.environment.grid[nextCoords[0]][nextCoords[1]]
+                directions.append(pas)
+        return directions
+
     def getDirectionsToFreeNeighbors(self):
         directions = []
         pasList = [(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]

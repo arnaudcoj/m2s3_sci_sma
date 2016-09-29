@@ -9,6 +9,7 @@ from KeyListener import *
 from SMA import *
 from Avatar import *
 from Wall import *
+from Hunter import *
 from View import *
 from MapGenerator import *
 
@@ -19,26 +20,31 @@ class Main(Core):
 
     def populate(self):
         self.createWalls()
-
         self.keyListener = KeyListener(self.window)
-
-        nbAvatars = 1
+        nbHunters = 4
 
         #Fetch the free cells from the environment
         freeCells = self.environment.getFreeCells()
 
-        #Check if there are enough cells for each particle
-        if len(freeCells) < nbAvatars :
-            print("Error ! There are more particles than free cells !")
-            return
-
         #Shuffle the list
         random.shuffle(freeCells)
 
-        #Pop a free cell from the list then create and place an agent in this cell
-        for i in range(nbAvatars):
+        ###PLACING AVATAR
+        position = freeCells.pop()
+        avatar = self.createAvatar(position[0], position[1], None)
+
+        ###PLACING HUNTERS
+        #Check if there are enough cells for each particle
+        if len(freeCells) < nbHunters :
+            print("Error ! There are more particles than free cells !")
+            return
+
+        for i in range(nbHunters):
+            #creates the hunters
             position = freeCells.pop()
-            self.createAvatar(position[0], position[1], "Avatar" + str(i))
+            hunter = self.createHunter(position[0], position[1], None)
+            avatar.avatarNotifier.addObserver(hunter.avatarFollower)
+            avatar.computeDijkstraMatrix
 
     def createWalls(self):
         generator = MapGenerator(self.environment.getNbCol(), self.environment.getNbRow());
@@ -53,10 +59,16 @@ class Main(Core):
                     self.environment.setInCell(x, y, wall)
 
     def createAvatar(self, x, y, name):
-        print("override")
         agent = Avatar(self.environment, x, y, name, self.keyListener)
         self.environment.agentlist.append(agent)
         self.environment.setInCell(x, y, agent)
+        return agent
+
+    def createHunter(self, x, y, name):
+        agent = Hunter(self.environment, x, y, name)
+        self.environment.agentlist.append(agent)
+        self.environment.setInCell(x, y, agent)
+        return agent
 
     def update(self):
         super().update()
@@ -76,7 +88,7 @@ class Main(Core):
         if not "boxSize" in self.data:
             self.data["boxSize"] = 0
         if not "delay" in self.data:
-            self.data["delay"] = 1000
+            self.data["delay"] = 100
         if not "scheduling" in self.data:
             self.data["scheduling"] = "sequential"
         if not "nbTicks" in self.data:

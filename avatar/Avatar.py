@@ -7,7 +7,7 @@ class Avatar(Agent):
         super(Avatar, self).__init__(environment, posX, posY, name)
         self.color = "Purple"
         self.keyListener = keyListener
-        self.avatarNotifier = AvatarNotifier()
+        self.avatarNotifier = AvatarNotifier(environment)
 
     def decide(self):
         lastDirectionPressed = self.keyListener.lastDirectionPressed
@@ -24,10 +24,40 @@ class Avatar(Agent):
 
     def update(self):
         self.move()
-        self.avatarNotifier.emitSignal("avatarUpdated")
+        self.computeDijkstraMatrix()
+
+    def computeDijkstraMatrix(self):
+        width = self.environment.getNbCol()
+        height = self.environment.getNbRow()
+        grid = self.environment.grid
+        cpt = 1
+
+        matrix = []
+        for i in range(width):
+            matrix.append([None] * height)
+        matrix[self.posX][self.posY] = 0
+
+        fringe = self.environment.getMooreNeighbors(self.posX,self.posY)
+
+        while fringe:
+            nextFringe = []
+            for cell in fringe:
+                x = cell[0]
+                y = cell[1]
+                if grid[x][y] == None and matrix[x][y] == None:
+                    matrix[x][y] = cpt
+                    nextFringe.extend(self.environment.getMooreNeighbors(x,y))
+            cpt += 1
+            fringe = nextFringe
+
+        self.avatarNotifier.updateDijkstraMatrix(matrix)
 
 class AvatarNotifier(Observable):
     """docstring for AvatarNotifier."""
-    def __init__(self):
+    def __init__(self, environment):
         super(AvatarNotifier, self).__init__()
-        self.dijkstraMatrix = None #compute dijkstraMatrix
+        self.environment = environment
+
+    def updateDijkstraMatrix(self, matrix):
+        self.dijkstraMatrix = matrix
+        self.emitSignal("avatarUpdated")
