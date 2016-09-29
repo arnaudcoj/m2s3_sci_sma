@@ -3,6 +3,7 @@ class Environment(object):
     def __init__(self, data, agentlist):
         super(Environment, self).__init__()
         self.data = data
+        self.torus = data["torus"]
         self.agentlist = agentlist
         self.initGrid()
 
@@ -21,6 +22,40 @@ class Environment(object):
                 if self.grid[i][j] == None:
                     freeCells.append((i,j))
         return freeCells
+
+    def getMooreNeighbors(self, x, y):
+        width = self.getNbCol()
+        height = self.getNbRow()
+        neighbors = []
+        steps = [(0,1), (1,0), (0,-1), (-1,0)]
+        torus = self.torus
+        grid = self.grid
+
+        for step in steps:
+            nextCellX = x + step[0]
+            nextCellY = y + step[1]
+            neighbor = (nextCellX, nextCellY)
+
+            if (nextCellY < 0) or (nextCellY >= height) or (nextCellX < 0) or (nextCellX >= width) :
+                #the environment is toric
+                if torus :
+                    if nextCellY < 0 :
+                        nextCellY = height - 1
+                    elif nextCellY >= height :
+                        nextCellY = 0
+
+                    if nextCellX < 0 :
+                        nextCellX = width - 1
+                    elif nextCellX >= width :
+                        nextCellX = 0
+                    neighbor = (nextCellX, nextCellY)
+                else:
+                    neighbor = None
+
+            if neighbor != None:
+                neighbors.append(neighbor)
+        return neighbors
+
 
     def getNbRow(self):
         return len(self.grid[0])
