@@ -59,7 +59,7 @@ class Core(object):
         self.createSMA()
 
     def createEnvironment(self):
-        self.environment = Environment(self.data, [])
+        self.environment = Environment(self.data, [], [])
 
     def populate(self):
         raise NotImplementedError("Core.populate needs to be implemented")

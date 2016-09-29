@@ -1,13 +1,16 @@
 import random
 
 class MapGenerator():
-	def __init__(self):
-		self.width = 20
-		self.height = 10
+	def __init__(self, width, height):
+		self.width = width
+		self.height = height
 		self.birthLimit = 4
 		self.deathLimit = 3
-		self.chanceToStartAlive = 0.45
-		self.numberOfSteps = 2
+		self.chanceToStartAlive = 0.4
+		self.numberOfSteps = 10
+
+		self.nbCave = 0
+		self.caves = []
 
 	def generateMap(self):
 		#Create a new map
@@ -21,12 +24,14 @@ class MapGenerator():
 		#And now run the simulation for a set number of steps
 		for i in range(self.numberOfSteps):
 			self.cellMap = self.doSimulationStep(self.cellMap)
+
+		self.epurate()
  
 	def initialiseMap(self, map):
 		for x in range(self.width):
 			for y in range(self.height):
 				if (random.random() < self.chanceToStartAlive):
-					map[x][y] = True
+					map[x][y] = 1
 
 		return map
 
@@ -44,16 +49,16 @@ class MapGenerator():
 				#First, if a cell is alive but has too few neighbours, kill it.
 				if (oldMap[x][y]):
 					if (nbs < self.deathLimit):
-						newMap[x][y] = False
+						newMap[x][y] = 0
 					else:
-						newMap[x][y] = True
+						newMap[x][y] = 1
 
 				#Otherwise, if the cell is dead now, check if it has the right number of neighbours to be 'born'
 				else:
 					if (nbs > self.birthLimit):
-						newMap[x][y] = True
+						newMap[x][y] = 1
 					else:
-						newMap[x][y] = False
+						newMap[x][y] = 0
 
 		return newMap
 
@@ -81,28 +86,51 @@ class MapGenerator():
 
 		return count
 
-	def printASCII(self):
-		#First Line
-		print("+", end="")
-		for i in range(self.width):
-			print("-+", end="")
+	def epurate(self):
+		emptyCell = self.findEmptyCell()
+		while emptyCell :
+			self.nbCave += 1
+			self.caves.append(0)
+			self.floodfill(emptyCell[0], emptyCell[1], 0, self.nbCave + 1)
+			emptyCell = self.findEmptyCell()
+		
+		print(self.nbCave)
+		for x in range(self.nbCave):
+			print(self.caves[x])
 
-		#Intermediate Lines
-		for j in range(self.height):
-			print("\n|", end="")
-			for i in range(self.width):
-				if self.cellMap[i][j] == True:
-					print("1", end="")
-				else:
-					print("0", end="")
-				print("|", end="")
-			print("\n+", end="")
-			for i in range(self.width):
-				print("-+", end="")
+		biggestCave = 0
+		for x in range(self.nbCave):
+			if self.caves[x] > self.caves[biggestCave] :
+				biggestCave = x
 
-		#End
-		print("")
+		print(biggestCave)
+		for x in range(self.width):
+			for y in range(self.height):
+				if self.cellMap[x][y] != biggestCave + 2 :
+					self.cellMap[x][y] = 1
 
-mapGenerator = MapGenerator()
-mapGenerator.generateMap()
-mapGenerator.printASCII()
+	def findEmptyCell(self):
+		for x in range(self.width):
+			for y in range(self.height):
+				if self.cellMap[x][y] == 0 :
+					return (x,y)
+		return None
+
+	def floodfill(self, x, y, oldNb, newNb):
+		if self.cellMap[x][y] != oldNb : # the base case
+			return
+		
+		self.cellMap[x][y] = newNb
+		self.caves[self.nbCave - 1] += 1
+
+		if x < self.width -1 :
+			self.floodfill(x + 1, y, oldNb, newNb) # right
+
+		if x > 0 :
+			self.floodfill(x - 1, y, oldNb, newNb) # left
+
+		if y < self.height - 1 :
+			self.floodfill(x, y + 1, oldNb, newNb) # down
+
+		if y > 0 :
+			self.floodfill(x, y - 1, oldNb, newNb) # up

@@ -8,7 +8,9 @@ from Environment import *
 from KeyListener import *
 from SMA import *
 from Avatar import *
+from Wall import *
 from View import *
+from MapGenerator import *
 
 class Main(Core):
     """docstring for Main"""
@@ -16,6 +18,7 @@ class Main(Core):
         super(Main, self).__init__()
 
     def populate(self):
+        self.createWalls()
 
         self.keyListener = KeyListener(self.window)
 
@@ -37,6 +40,17 @@ class Main(Core):
             position = freeCells.pop()
             self.createAvatar(position[0], position[1], "Avatar" + str(i))
 
+    def createWalls(self):
+        generator = MapGenerator(self.environment.getNbCol(), self.environment.getNbRow());
+        generator.generateMap();
+        cellMap = generator.cellMap
+
+        for x in range(generator.width):
+            for y in range(generator.height):
+                if cellMap[x][y] == 1 :
+                    wall = Wall(self.environment, x, y, None)
+                    self.environment.walllist.append(wall)
+                    self.environment.setInCell(x, y, wall)
 
     def createAvatar(self, x, y, name):
         print("override")
@@ -72,7 +86,7 @@ class Main(Core):
         if not "trace" in self.data:
             self.data["trace"] = True
         if not "seed" in self.data:
-            self.data["seed"] = "toto"
+            self.data["seed"] = 0
         if not "refresh" in self.data:
             self.data["refresh"] = 1
         if not "autoquit" in self.data:

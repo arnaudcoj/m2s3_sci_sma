@@ -23,6 +23,7 @@ class View(Observer):
 
     def onModelCreated(self, SMA):
         self.drawGrid(SMA.environment)
+        self.drawWalls(SMA)
         self.drawParticles(SMA)
 
 #    def onModelUpdated(self, SMA):
@@ -46,6 +47,17 @@ class View(Observer):
                     for i in range(environment.getNbCol()):
                         self.canvas.create_rectangle(i * self.boxSize, j * self.boxSize, (i + 1) * self.boxSize, (j + 1 ) * self.boxSize, fill = 'white', width = 1)
 
+    def drawWalls(self, SMA):
+        if SMA.tick % self.refresh == 0:
+            self.canvas.delete("wall")
+            walllist = SMA.environment.walllist
+            for wall in walllist:
+                x1 = wall.posX * self.boxSize + self.margin
+                y1 = wall.posY * self.boxSize + self.margin
+                x2 = (wall.posX + 1) * self.boxSize - self.margin
+                y2 = (wall.posY + 1 ) * self.boxSize - self.margin
+                self.canvas.create_rectangle(x1, y1, x2, y2, fill = wall.color, width = 0, tag = "wall")
+
     def drawParticles(self, SMA):
         #self.particleList = []
         if SMA.tick % self.refresh == 0:
@@ -56,5 +68,4 @@ class View(Observer):
                 y1 = agent.posY * self.boxSize + self.margin
                 x2 = (agent.posX + 1) * self.boxSize - self.margin
                 y2 = (agent.posY + 1 ) * self.boxSize - self.margin
-                oval = self.canvas.create_oval(x1, y1, x2, y2, fill = agent.color, width = 0, tag="agent")
-                #self.particleList.append((agent, oval))
+                self.canvas.create_oval(x1, y1, x2, y2, fill = agent.color, width = 0, tag = "agent")

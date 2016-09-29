@@ -1,9 +1,10 @@
 class Environment(object):
     """docstring for Environment"""
-    def __init__(self, data, agentlist):
+    def __init__(self, data, agentlist, walllist):
         super(Environment, self).__init__()
         self.data = data
         self.agentlist = agentlist
+        self.walllist = walllist
         self.initGrid()
 
     def initGrid(self):
