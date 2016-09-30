@@ -1,13 +1,14 @@
 import random
 
 class MapGenerator():
-	def __init__(self, width, height):
-		self.width = width
-		self.height = height
-		self.birthLimit = 4
-		self.deathLimit = 3
-		self.chanceToStartAlive = 0.4
-		self.numberOfSteps = 10
+	def __init__(self, environment):
+		self.environment = environment
+		self.width = self.environment.getNbCol()
+		self.height = self.environment.getNbRow()
+		self.birthLimit = self.environment.data["birthLimit"]
+		self.deathLimit = self.environment.data["deathLimit"]
+		self.chanceToStartAlive = self.environment.data["chanceToStartAlive"]
+		self.numberOfSteps = self.environment.data["numberOfSteps"]
 
 		self.nbCave = 0
 		self.caves = []
