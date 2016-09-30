@@ -115,13 +115,15 @@ class Main(Core):
         if not "nbHunters" in self.data:
             self.data["nbHunters"] = 1
         if not "nbDefenders" in self.data:
-            self.data["nbDefenders"] = 1
+            self.data["nbDefenders"] = 4
+        if not "invincibilityDuration" in self.data or self.data["invincibilityDuration"] <= 0:
+            self.data["invincibilityDuration"] = (self.data["gridSizeY"] * self.data["gridSizeX"]) / 50
         if not "speedHunter" in self.data:
             self.data["speedHunter"] = 1
         if not "speedAvatar" in self.data:
             self.data["speedAvatar"] = 1
         if not "defenderLife" in self.data or self.data["defenderLife"] <= 0:
-            self.data["defenderLife"] = (self.data["gridSizeY"] * self.data["gridSizeX"]) / 5
+            self.data["defenderLife"] = (self.data["gridSizeY"] * self.data["gridSizeX"]) / 25
         if not "birthLimit" in self.data:
             self.data["birthLimit"] = 4
         if not "deathLimit" in self.data:

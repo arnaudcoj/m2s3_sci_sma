@@ -12,6 +12,9 @@ class Avatar(Agent):
         self.avatarNotifier = AvatarNotifier(environment)
         self.nbDefenders = 0
         self.dead = False
+        self.invincible = False
+        self.invincibilityDuration = self.environment.data["invincibilityDuration"]
+        self.currentInvincibilityDuration = self.invincibilityDuration
 
         self.tick = 0
 
@@ -36,6 +39,7 @@ class Avatar(Agent):
             nextCellAgent = self.environment.grid[coords[0]][coords[1]]
             if nextCellAgent and type(nextCellAgent) == Defender and not nextCellAgent.isDead() :
                 self.nbDefenders += 1
+                self.becomeInvincible()
                 nextCellAgent.die(self.nbDefenders)
             elif nextCellAgent and type(nextCellAgent) == Winner and not nextCellAgent.isDead() :
                 raise NotImplementedError("end of the game, to be implemented")
@@ -47,10 +51,28 @@ class Avatar(Agent):
     def isDead(self):
         return self.dead
 
+    def becomeInvincible(self):
+        self.currentInvincibilityDuration = self.invincibilityDuration
+        self.invincible = True
+        self.color = "Green"
+        self.avatarNotifier.updateInvincibility(self.invincible)
+
+    def isInvincible(self):
+        return self.invincible
+
+    def loseInvincibilityDuration(self):
+        self.currentInvincibilityDuration -= 1
+        if(self.currentInvincibilityDuration <= 0):
+            self.invincible = False
+            self.color = "Purple"
+            self.avatarNotifier.updateInvincibility(self.invincible)
+
+
     def update(self):
         if not self.isDead() :
             speedAvatar = self.environment.data["speedAvatar"]
             if (self.tick % speedAvatar) == 0:
+                self.loseInvincibilityDuration()
                 self.eat()
                 self.move()
                 self.computeDijkstraMatrix()
@@ -91,3 +113,7 @@ class AvatarNotifier(Observable):
     def updateDijkstraMatrix(self, matrix):
         self.dijkstraMatrix = matrix
         self.emitSignal("avatarUpdated")
+
+    def updateInvincibility(self, invincible):
+        self.invincible = invincible
+        self.emitSignal("avatarInvincibilityChanged")

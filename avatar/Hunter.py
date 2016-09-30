@@ -19,7 +19,16 @@ class Hunter(Agent):
             targetY = self.posY
             matrix = self.avatarFollower.dijkstraMatrix
 
-            if self.avatarFollower.dijkstraMatrix != None :
+            if self.avatarFollower.invincible :
+                for cell in self.environment.getMooreNeighbors(self.posX, self.posY):
+                    x = cell[0]
+                    y = cell[1]
+
+                    if matrix[targetX][targetY] == None or (matrix[x][y] != None and matrix[x][y] > matrix[targetX][targetY]):
+                        targetX = x
+                        targetY = y
+
+            elif self.avatarFollower.dijkstraMatrix != None :
                 for cell in self.environment.getMooreNeighbors(self.posX, self.posY):
                     x = cell[0]
                     y = cell[1]
@@ -48,7 +57,11 @@ class AvatarFollower(Observer):
     def __init__(self):
         super(AvatarFollower, self).__init__()
         self.dijkstraMatrix = None
-        self.signalFunc = {"avatarUpdated":self.onAvatarUpdated}
+        self.invincible = False
+        self.signalFunc = {"avatarUpdated":self.onAvatarUpdated, "avatarInvincibilityChanged":self.onAvatarInvincibilityUpdated}
 
     def onAvatarUpdated(self, avatar):
         self.dijkstraMatrix = avatar.dijkstraMatrix
+
+    def onAvatarInvincibilityUpdated(self, avatar):
+        self.invincible = avatar.invincible
