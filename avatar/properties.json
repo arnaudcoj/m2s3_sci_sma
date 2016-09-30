@@ -1,6 +1,6 @@
 {
-  "gridSizeX":25,
-  "gridSizeY":25,
+  "gridSizeX":50,
+  "gridSizeY":50,
   "torus":true,
   "canvasSizeX":800,
   "canvasSizeY":800,
@@ -10,7 +10,7 @@
   "nbTicks":0,
   "grid":true,
   "trace":false,
-  "seed":"ckfrt",
+  "seed":0,
   "refresh":1,
   "autoquit":false,
   "nbHunters":4,

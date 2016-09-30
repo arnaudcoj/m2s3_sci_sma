@@ -34,14 +34,13 @@ class Core(object):
         raise NotImplementedError("Core.setDefaultProperties to be implemented")
 
     def initRandom(self):
-        seed = self.data["seed"]
         #Check if there is a given seed
-        if seed == 0 or seed == "0" :
+        if self.data["seed"] == 0 or self.data["seed"] == "0" :
             #if not, create a random seed
-            seed = random.randint(0, sys.maxsize)
+            self.data["seed"] = random.randint(0, sys.maxsize)
 
         #Initialize the random engine with the seed
-        random.seed(seed)
+        random.seed(self.data["seed"])
 
 
     # Creation methods

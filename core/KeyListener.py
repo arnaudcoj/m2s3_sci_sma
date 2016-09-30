@@ -4,11 +4,16 @@ class KeyListener(object):
     """docstring for KeyListener"""
     def __init__(self, window, data):
         super(KeyListener, self).__init__()
+        window.bind("s", self.onPrintSeed)
         window.bind("w", self.onSimulationAccelerate)
         window.bind("x", self.onSimulationDecelerate)
         window.bind("<space>", self.onStartPressed)
         self.lastDirectionPressed = None
         self.data = data
+
+    def onPrintSeed(self, event):
+        if "seed" in self.data:
+            print("seed=", self.data["seed"])
 
     def onSimulationAccelerate(self, event):
         if "delay" in self.data:
