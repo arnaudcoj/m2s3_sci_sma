@@ -42,11 +42,14 @@ class Avatar(Agent):
                 self.becomeInvincible()
                 nextCellAgent.die(self.nbDefenders)
             elif nextCellAgent and type(nextCellAgent) == Winner and not nextCellAgent.isDead() :
-                raise NotImplementedError("end of the game, to be implemented")
+                self.avatarNotifier.emitSignal("avatarWon")
+                nextCellAgent.die()
+
 
     def die(self):
         self.environment.killAgent(self)
         self.dead = True
+        self.avatarNotifier.emitSignal("avatarDied")
 
     def isDead(self):
         return self.dead

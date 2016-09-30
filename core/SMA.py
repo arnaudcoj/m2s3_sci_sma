@@ -9,10 +9,11 @@ class SMA(Observable):
         self.environment = environment
         self.data = data
         self.tick = 1
+        self.finished = False
 
     def hasFinished(self):
         nbTicks = self.data["nbTicks"]
-        return nbTicks and self.tick > nbTicks
+        return self.finished or nbTicks and self.tick > nbTicks
 
     def run(self):
         pause = self.data["pause"]

@@ -37,7 +37,6 @@ class Hunter(Agent):
                         nextCellAgent = self.environment.grid[x][y]
                         if nextCellAgent and type(nextCellAgent) == Avatar and not nextCellAgent.isDead() :
                             nextCellAgent.die()
-                            raise NotImplementedError("end of the game, to be implemented")
 
                     if matrix[targetX][targetY] == None or (matrix[x][y] != None and matrix[x][y] < matrix[targetX][targetY]):
                         targetX = x

@@ -17,6 +17,7 @@ class Main(Core):
     """docstring for Main"""
     def __init__(self, nbParticles=None):
         super(Main, self).__init__()
+        self.endGameObserver = EndGameObserver()
 
     def populate(self):
         self.createWalls()
@@ -32,6 +33,7 @@ class Main(Core):
         ###PLACING AVATAR
         position = freeCells.pop()
         avatar = self.createAvatar(position[0], position[1], None)
+        avatar.avatarNotifier.addObserver(self.endGameObserver)
 
         ###PLACING HUNTERS
         #Check if there are enough cells for each particle
@@ -80,6 +82,8 @@ class Main(Core):
         return agent
 
     def update(self):
+        if self.endGameObserver.finished:
+            self.SMA.finished = True
         super().update()
         self.keyListener.canBeCleared = True
 
@@ -134,6 +138,21 @@ class Main(Core):
             self.data["chanceToStartAlive"] = 0.4
         if not "numberOfSteps" in self.data:
             self.data["numberOfSteps"] = 10
+
+class EndGameObserver(Observer):
+    """docstring for EndGameObserver."""
+    def __init__(self):
+        super(EndGameObserver, self).__init__()
+        self.signalFunc = {"avatarDied":self.onAvatarDied, "avatarWon":self.onAvatarWon}
+        self.finished = False
+
+    def onAvatarDied(self, avatar):
+        self.finished = True
+        print("You Died !")
+
+    def onAvatarWon(self, avatar):
+        self.finished = True
+        print("You Won !")
 
 if __name__ == '__main__':
     main(Main)
