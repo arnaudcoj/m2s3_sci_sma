@@ -115,7 +115,7 @@ class Main(Core):
         if not "refresh" in self.data:
             self.data["refresh"] = 1
         if not "autoquit" in self.data:
-            self.data["autoquit"] = False
+            self.data["autoquit"] = True
         if not "pause" in self.data:
             self.data["pause"] = False
         if not "nbHunters" in self.data:
