@@ -15,5 +15,10 @@
   "autoquit":false,
   "nbHunters":4,
   "speedHunter":10,
-  "speedAvatar":1
+  "speedAvatar":1,
+  "defenderLife":0,
+  "birthLimit":3,
+  "deathLimit":4,
+  "chanceToStartAlive":0.4,
+  "numberOfSteps":10
 }

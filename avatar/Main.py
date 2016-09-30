@@ -50,7 +50,7 @@ class Main(Core):
         self.createDefender(position[0], position[1], None)
 
     def createWalls(self):
-        generator = MapGenerator(self.environment.getNbCol(), self.environment.getNbRow());
+        generator = MapGenerator(self.environment);
         generator.generateMap();
         cellMap = generator.cellMap
 
@@ -120,6 +120,14 @@ class Main(Core):
             self.data["speedAvatar"] = 1
         if not "defenderLife" in self.data or self.data["defenderLife"] <= 0:
             self.data["defenderLife"] = (self.data["gridSizeY"] * self.data["gridSizeX"]) / 5
+        if not "birthLimit" in self.data:
+            self.data["birthLimit"] = 4
+        if not "deathLimit" in self.data:
+            self.data["deathLimit"] = 3
+        if not "chanceToStartAlive" in self.data:
+            self.data["chanceToStartAlive"] = 0.4
+        if not "numberOfSteps" in self.data:
+            self.data["numberOfSteps"] = 10
 
 if __name__ == '__main__':
     main(Main)
