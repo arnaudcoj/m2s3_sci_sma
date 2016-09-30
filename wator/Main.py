@@ -78,6 +78,8 @@ class Main(Core):
             self.data["refresh"] = 1
         if not "autoquit" in self.data:
             self.data["autoquit"] = False
+        if not "pause" in self.data:
+            self.data["pause"] = False
         if not "nbSharks" in self.data:
             self.data["nbSharks"] = 5
         if not "nbFishes" in self.data:

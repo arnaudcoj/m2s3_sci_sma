@@ -68,11 +68,7 @@ class Core(object):
         self.environment.setInCell(x, y, agent)
 
     def createSMA(self):
-        scheduling = self.data["scheduling"]
-        nbTicks = self.data["nbTicks"]
-        trace = self.data["trace"]
-
-        self.SMA = SMA(self.environment, scheduling, nbTicks, trace)
+        self.SMA = SMA(self.environment, self.data)
         self.SMA.addObserver(self.view)
 
     def createWindow(self):
