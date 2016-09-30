@@ -21,7 +21,7 @@ class Main(Core):
     def populate(self):
         self.createWalls()
         self.keyListener = KeyListener(self.window, self.data)
-        nbHunters = 4
+        nbHunters = self.data["nbHunters"]
 
         #Fetch the free cells from the environment
         freeCells = self.environment.getFreeCells()
@@ -46,6 +46,9 @@ class Main(Core):
             avatar.avatarNotifier.addObserver(hunter.avatarFollower)
             avatar.computeDijkstraMatrix
 
+        position = freeCells.pop()
+        self.createDefender(position[0], position[1], None)
+
     def createWalls(self):
         generator = MapGenerator(self.environment.getNbCol(), self.environment.getNbRow());
         generator.generateMap();
@@ -66,6 +69,12 @@ class Main(Core):
 
     def createHunter(self, x, y, name):
         agent = Hunter(self.environment, x, y, name)
+        self.environment.agentlist.append(agent)
+        self.environment.setInCell(x, y, agent)
+        return agent
+
+    def createDefender(self, x, y, name):
+        agent = Defender(self.environment, x, y, name)
         self.environment.agentlist.append(agent)
         self.environment.setInCell(x, y, agent)
         return agent
@@ -109,8 +118,8 @@ class Main(Core):
             self.data["speedHunter"] = 1
         if not "speedAvatar" in self.data:
             self.data["speedAvatar"] = 1
-        if not "defenderLife" in self.data:
-            self.data["defenderLife"] = 4
+        if not "defenderLife" in self.data or self.data["defenderLife"] <= 0:
+            self.data["defenderLife"] = (self.data["gridSizeY"] * self.data["gridSizeX"]) / 5
 
 if __name__ == '__main__':
     main(Main)

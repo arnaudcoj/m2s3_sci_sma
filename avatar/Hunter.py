@@ -1,12 +1,15 @@
 from Agent import *
 from Observer import *
+from Avatar import *
 
 class Hunter(Agent):
+
     """docstring for Hunter."""
     def __init__(self, environment, posX, posY, name):
         super(Hunter, self).__init__(environment, posX, posY, name)
         self.avatarFollower = AvatarFollower()
         self.color = "Red"
+
         self.tick = 0
 
     def decide(self):
@@ -22,7 +25,10 @@ class Hunter(Agent):
                     y = cell[1]
 
                     if matrix[x][y] == 0:
-                        raise NotImplementedError("end of the game, to be implemented")
+                        nextCellAgent = self.environment.grid[x][y]
+                        if nextCellAgent and type(nextCellAgent) == Avatar and not nextCellAgent.isDead() :
+                            nextCellAgent.die()
+                            raise NotImplementedError("end of the game, to be implemented")
 
                     if matrix[targetX][targetY] == None or (matrix[x][y] != None and matrix[x][y] < matrix[targetX][targetY]):
                         targetX = x

@@ -1,5 +1,7 @@
 from Agent import *
 from Observable import *
+from Defender import *
+from Winner import *
 
 class Avatar(Agent):
     """docstring for Avatar"""
@@ -8,6 +10,9 @@ class Avatar(Agent):
         self.color = "Purple"
         self.keyListener = keyListener
         self.avatarNotifier = AvatarNotifier(environment)
+        self.nbDefenders = 0
+        self.dead = False
+
         self.tick = 0
 
     def decide(self):
@@ -25,12 +30,31 @@ class Avatar(Agent):
             elif lastDirectionPressed == 'Right':
                 self.pasX += 1
 
+    def eat(self):
+        coords = self.findNextCell()
+        if coords :
+            nextCellAgent = self.environment.grid[coords[0]][coords[1]]
+            if nextCellAgent and type(nextCellAgent) == Defender and not nextCellAgent.isDead() :
+                self.nbDefenders += 1
+                nextCellAgent.die(self.nbDefenders)
+            elif nextCellAgent and type(nextCellAgent) == Winner and not nextCellAgent.isDead() :
+                raise NotImplementedError("end of the game, to be implemented")
+
+    def die(self):
+        self.environment.killAgent(self)
+        self.dead = True
+
+    def isDead(self):
+        return self.dead
+
     def update(self):
-        speedAvatar = self.environment.data["speedAvatar"]
-        if (self.tick % speedAvatar) == 0:
-            self.move()
-            self.computeDijkstraMatrix()
-        self.tick += 1
+        if not self.isDead() :
+            speedAvatar = self.environment.data["speedAvatar"]
+            if (self.tick % speedAvatar) == 0:
+                self.eat()
+                self.move()
+                self.computeDijkstraMatrix()
+            self.tick += 1
 
     def computeDijkstraMatrix(self):
         width = self.environment.getNbCol()
