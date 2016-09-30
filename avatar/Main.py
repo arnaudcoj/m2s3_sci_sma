@@ -5,7 +5,7 @@ import random
 sys.path.append('../core')
 from Core import *
 from Environment import *
-from KeyListener import *
+from AvatarKeyListener import *
 from SMA import *
 from Avatar import *
 from Wall import *
@@ -20,7 +20,7 @@ class Main(Core):
 
     def populate(self):
         self.createWalls()
-        self.keyListener = KeyListener(self.window, self.data)
+        self.keyListener = AvatarKeyListener(self.window, self.data)
         nbHunters = self.data["nbHunters"]
 
         #Fetch the free cells from the environment
@@ -112,6 +112,8 @@ class Main(Core):
             self.data["refresh"] = 1
         if not "autoquit" in self.data:
             self.data["autoquit"] = False
+        if not "pause" in self.data:
+            self.data["pause"] = False
         if not "nbHunters" in self.data:
             self.data["nbHunters"] = 1
         if not "nbDefenders" in self.data:

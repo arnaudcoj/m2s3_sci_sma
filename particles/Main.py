@@ -59,6 +59,8 @@ class Main(Core):
             self.data["trace"] = True
         if not "seed" in self.data:
             self.data["seed"] = 0
+        if not "pause" in self.data:
+            self.data["pause"] = False
         if not "refresh" in self.data:
             self.data["refresh"] = 1
         if not "nbParticles" in self.data:

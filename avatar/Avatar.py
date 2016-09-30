@@ -89,7 +89,7 @@ class Avatar(Agent):
             matrix.append([None] * height)
         matrix[self.posX][self.posY] = 0
 
-        fringe = self.environment.getMooreNeighbors(self.posX,self.posY)
+        fringe = self.environment.getVonNeumannNeighbors(self.posX,self.posY)
 
         while fringe:
             nextFringe = []
@@ -98,7 +98,7 @@ class Avatar(Agent):
                 y = cell[1]
                 if grid[x][y] == None and matrix[x][y] == None:
                     matrix[x][y] = cpt
-                    nextFringe.extend(self.environment.getMooreNeighbors(x,y))
+                    nextFringe.extend(self.environment.getVonNeumannNeighbors(x,y))
             cpt += 1
             fringe = nextFringe
 
