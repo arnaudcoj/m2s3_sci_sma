@@ -20,7 +20,7 @@ class Main(Core):
 
     def populate(self):
         self.createWalls()
-        self.keyListener = KeyListener(self.window)
+        self.keyListener = KeyListener(self.window, self.data)
         nbHunters = 4
 
         #Fetch the free cells from the environment
@@ -103,6 +103,14 @@ class Main(Core):
             self.data["refresh"] = 1
         if not "autoquit" in self.data:
             self.data["autoquit"] = False
+        if not "nbHunters" in self.data:
+            self.data["nbHunters"] = 4
+        if not "speedHunter" in self.data:
+            self.data["speedHunter"] = 1
+        if not "speedAvatar" in self.data:
+            self.data["speedAvatar"] = 1
+        if not "defenderLife" in self.data:
+            self.data["defenderLife"] = 4
 
 if __name__ == '__main__':
     main(Main)

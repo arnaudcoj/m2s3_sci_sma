@@ -8,23 +8,29 @@ class Avatar(Agent):
         self.color = "Purple"
         self.keyListener = keyListener
         self.avatarNotifier = AvatarNotifier(environment)
+        self.tick = 0
 
     def decide(self):
-        lastDirectionPressed = self.keyListener.lastDirectionPressed
-        self.pasX = 0
-        self.pasY = 0
-        if lastDirectionPressed == 'Up':
-            self.pasY -= 1
-        elif lastDirectionPressed == 'Down':
-            self.pasY += 1
-        if lastDirectionPressed == 'Left':
-            self.pasX -= 1
-        elif lastDirectionPressed == 'Right':
-            self.pasX += 1
+        speedAvatar = self.environment.data["speedAvatar"]
+        if (self.tick % speedAvatar) == 0:
+            lastDirectionPressed = self.keyListener.lastDirectionPressed
+            self.pasX = 0
+            self.pasY = 0
+            if lastDirectionPressed == 'Up':
+                self.pasY -= 1
+            elif lastDirectionPressed == 'Down':
+                self.pasY += 1
+            if lastDirectionPressed == 'Left':
+                self.pasX -= 1
+            elif lastDirectionPressed == 'Right':
+                self.pasX += 1
 
     def update(self):
-        self.move()
-        self.computeDijkstraMatrix()
+        speedAvatar = self.environment.data["speedAvatar"]
+        if (self.tick % speedAvatar) == 0:
+            self.move()
+            self.computeDijkstraMatrix()
+        self.tick += 1
 
     def computeDijkstraMatrix(self):
         width = self.environment.getNbCol()

@@ -20,8 +20,6 @@ class Core(object):
 
         self.initRandom()
 
-        self.delay = self.data["delay"]
-
     # Initialization methods
 
     def loadPropertiesFromJSON(self, fileName):
@@ -95,8 +93,9 @@ class Core(object):
     #Execution methods
 
     def run(self):
+        delay = self.data["delay"]
         self.createSystem()
-        self.window.after(self.delay, self.update)
+        self.window.after(delay, self.update)
         self.window.mainloop()
 
     #def profile(self):
@@ -114,11 +113,12 @@ class Core(object):
             #self.clearSystem()
 
     def update(self):
+        delay = self.data["delay"]
         if self.SMA.hasFinished() and self.data["autoquit"]:
             self.SMA.emitSignal("finished")
         else:
             self.SMA.run()
-            self.window.after(self.delay, self.update)
+            self.window.after(delay, self.update)
 
     #Misc
 

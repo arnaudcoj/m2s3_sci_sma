@@ -56,4 +56,4 @@ class View(Observer):
                 y1 = agent.posY * self.boxSize
                 x2 = (agent.posX + 1) * self.boxSize
                 y2 = (agent.posY + 1 ) * self.boxSize
-                self.canvas.create_oval(x1, y1, x2, y2, fill = agent.color, width = 1, tag = "agent")
+                self.canvas.create_oval(x1, y1, x2, y2, fill = agent.color, width = 0, tag = "agent")
