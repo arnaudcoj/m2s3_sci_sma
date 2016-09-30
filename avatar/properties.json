@@ -14,6 +14,7 @@
   "refresh":1,
   "autoquit":false,
   "nbHunters":4,
+  "nbDefenders":4,
   "speedHunter":10,
   "speedAvatar":1,
   "defenderLife":0,

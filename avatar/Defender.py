@@ -13,7 +13,7 @@ class Defender(Agent):
 		pass
 
 	def die(self, nbDefenders):
-		if nbDefenders == 4 :
+		if nbDefenders == self.environment.data["nbDefenders"] :
 			self.createWinner()
 		self.breed()
 		self.environment.killAgent(self)

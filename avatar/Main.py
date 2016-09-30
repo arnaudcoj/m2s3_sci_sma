@@ -113,7 +113,9 @@ class Main(Core):
         if not "autoquit" in self.data:
             self.data["autoquit"] = False
         if not "nbHunters" in self.data:
-            self.data["nbHunters"] = 4
+            self.data["nbHunters"] = 1
+        if not "nbDefenders" in self.data:
+            self.data["nbDefenders"] = 1
         if not "speedHunter" in self.data:
             self.data["speedHunter"] = 1
         if not "speedAvatar" in self.data:
