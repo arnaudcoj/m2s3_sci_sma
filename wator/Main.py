@@ -46,7 +46,7 @@ class Main(Core):
 
     def update(self):
         super().update()
-        if self.data["trace"]:
+        if not "pause" in self.data or not self.data["pause"] and self.data["trace"]:
             print(self.SMA.tick, self.environment.nbFishes, self.environment.nbSharks, self.environment.nbFishes / self.environment.nbSharks, sep=",")
 
     def setDefaultProperties(self):

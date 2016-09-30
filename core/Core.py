@@ -6,6 +6,7 @@ from Environment import *
 from SMA import *
 from Agent import *
 from View import *
+from KeyListener import *
 
 class Core(object):
     """docstring for Core"""
@@ -76,6 +77,7 @@ class Core(object):
         self.window.title("S.M.A")
         self.canvas = Canvas(self.window, width = self.data["canvasSizeX"] + 1, height = self.data["canvasSizeY"] + 1, background = 'white', bd=0, highlightthickness=0, relief='ridge')
         self.canvas.pack()
+        self.keyListener = KeyListener(self.window, self.data)
 
     def createView(self):
         boxSize = self.data["boxSize"]

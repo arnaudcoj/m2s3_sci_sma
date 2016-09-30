@@ -24,7 +24,7 @@ class Environment(object):
                     freeCells.append((i,j))
         return freeCells
 
-    def getMooreNeighbors(self, x, y):
+    def getVonNeumannNeighbors(self, x, y):
         width = self.getNbCol()
         height = self.getNbRow()
         neighbors = []

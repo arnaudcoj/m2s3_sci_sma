@@ -20,7 +20,7 @@ class Hunter(Agent):
             matrix = self.avatarFollower.dijkstraMatrix
 
             if self.avatarFollower.dijkstraMatrix != None :
-                for cell in self.environment.getMooreNeighbors(self.posX, self.posY):
+                for cell in self.environment.getVonNeumannNeighbors(self.posX, self.posY):
                     x = cell[0]
                     y = cell[1]
 
