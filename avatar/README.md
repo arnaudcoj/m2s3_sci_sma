@@ -1,4 +1,4 @@
-# TP2 -- S.M.A Travail sur les comportements
+# TP3 -- S.M.A Avatars et motion planning
 ###### Tristan Camus & Arnaud Cojez
 ______________________________________________
 
