@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>650</x>
+      <y>200</y>
+      <w>110</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Core
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>860</x>
+      <y>200</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Agent
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1080</x>
+      <y>340</y>
+      <w>150</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Fish
+--
+bg=pink
+__/Overriden Methods/__
+update(self)
+decide(self):
+style=autoresize
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>610</x>
+      <y>340</y>
+      <w>190</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Main
+--
+bg=green
+__/Overriden Methods/__
+populate(self)
+setDefaultProperties(self)
+style=autoresize
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>570</x>
+      <y>120</y>
+      <w>500</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>/Core/
+--
+bg=light_gray
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1010</x>
+      <y>200</y>
+      <w>40</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>...
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>930</x>
+      <y>220</y>
+      <w>220</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;200.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>220</y>
+      <w>30</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>590</x>
+      <y>300</y>
+      <w>680</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>/Wator/
+--
+bg=blue
+layer=0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>860</x>
+      <y>340</y>
+      <w>150</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Shark
+--
+bg=pink
+__/Overriden Methods/__
+update(self)
+decide(self):
+style=autoresize
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>910</x>
+      <y>220</y>
+      <w>30</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>830</x>
+      <y>490</y>
+      <w>360</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>bg=red
+TODO
+return types</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
