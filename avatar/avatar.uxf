@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>792</x>
+      <y>270</y>
+      <w>30</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Core
+style=autoresize
+bg=green
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1014</x>
+      <y>270</y>
+      <w>36</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Agent
+style=autoresize
+bg=pink
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1008</x>
+      <y>384</y>
+      <w>90</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>Hunter
+--
+avatarFollower
+tick : int
+--
+/Overriden Methods/
+decide(self)
+update(self)
+style=autoresize
+layer=1
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>498</x>
+      <y>384</y>
+      <w>144</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Main
+--
+self.endGameObserver
+--
+/Overriden Methods/
+populate(self)
+update(self)
+setDefaultProperties(self)
+--
+createWalls(self)
+createAvatar(self, x, y, name)
+createHunter(self, x, y, name)
+createDefender(self, x, y, name)
+bg=green
+style=autoresize
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>642</x>
+      <y>234</y>
+      <w>528</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>/Core/
+--
+bg=light_gray
+layer=0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1122</x>
+      <y>270</y>
+      <w>24</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>...
+bg=gray
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>912</x>
+      <y>354</y>
+      <w>132</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>200.0;10.0;10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>576</x>
+      <y>288</y>
+      <w>240</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>380.0;10.0;380.0;60.0;10.0;60.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>258</x>
+      <y>336</y>
+      <w>1122</w>
+      <h>336</h>
+    </coordinates>
+    <panel_attributes>/Avatar/
+--
+bg=red
+layer=0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>840</x>
+      <y>384</y>
+      <w>144</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>Avatar
+--
+keyListener
+nbDefenders : int
+dead : bool
+invincible : bool
+invincibilityDuration : int
+currentInvincibilityDuration : int
+tick : int
+--
+/Overriden Methods/
+bool isDead(self)
+decide(self)
+update(self)
+die(self)
+--
+eat(self)
+becomeInvincible(self)
+bool isInvincible(self)
+loseInvincibilityDuration(self)
+computeDijkstraMatrix(self)
+style=autoresize
+layer=1
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1026</x>
+      <y>288</y>
+      <w>18</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1146</x>
+      <y>354</y>
+      <w>132</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>200.0;50.0;200.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1128</x>
+      <y>384</y>
+      <w>102</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Defender
+--
+life : int
+dead : bool
+--
+/Overriden Methods/
+decide(self)
+die(self, nbDefenders)
+update(self)
+bool isDead(self)
+--
+breed(self)
+createWinner(self)
+starve(self)
+style=autoresize
+layer=1
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1266</x>
+      <y>474</y>
+      <w>90</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>Wall
+--
+/Overriden Methods/
+decide(self)
+update(self)
+style=autoresize
+layer=1
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1248</x>
+      <y>384</y>
+      <w>90</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>Winner
+--
+dead : bool
+--
+/Overriden Methods/
+decide(self)
+update(self)
+bool isDead(self)
+style=autoresize
+layer=1
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1260</x>
+      <y>354</y>
+      <w>96</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>140.0;200.0;140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>828</x>
+      <y>612</y>
+      <w>150</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>AvatarNotifier
+--
+updateDijkstraMatrix(self, matrix)
+updateInvincibility(self, invincible)
+style=autoresize
+layer=1
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1008</x>
+      <y>534</y>
+      <w>186</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>AvatarFollower
+--
+dijkstraMatrix : list &lt; list &lt; int &gt; &gt;
+invincible : bool
+signalFunc : dict &lt; string, function &gt;
+--
+__/Callbacks/__
+onAvatarUpdated(self, avatar)
+onAvatarInvincibilityUpdated(self, avatar)
+style=autoresize
+layer=1
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>270</y>
+      <w>66</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Environment
+bg=pink
+style=autoresize
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>882</x>
+      <y>576</y>
+      <w>108</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Notifies when updated</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1050</x>
+      <y>456</y>
+      <w>72</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+decide() uses 
+PathFinding</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>870</x>
+      <y>270</y>
+      <w>60</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>KeyListener
+style=autoresize
+layer=-1
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1026</x>
+      <y>354</y>
+      <w>48</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>60.0;50.0;60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>654</x>
+      <y>384</y>
+      <w>144</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>AvatarKeyListener
+--
+__/Callbacks/__
+onDirectionPressed(self, event)
+onHunterAccelerate(self, event)
+onHunterDecelerate(self, event)
+onAvatarAccelerate(self, event)
+onAvatarDecelerate(self, event)
+style=autoresize
+layer=1
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>792</x>
+      <y>396</y>
+      <w>60</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+
+
+&lt; Handle
+inputs</panel_attributes>
+    <additional_attributes>80.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>354</y>
+      <w>108</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;10.0;160.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>756</x>
+      <y>288</y>
+      <w>150</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;160.0;10.0;120.0;230.0;120.0;230.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>372</y>
+      <w>204</w>
+      <h>174</h>
+    </coordinates>
+    <panel_attributes>MapGenerator
+--
+width : int
+height : int
+birthLimit : int
+deathLimit : int
+chanceToStartAlive : int
+numberOfSteps : int
+nbCave : int
+caves : int
+--
+generateMap(self)
+list &lt; int, int &gt; initialiseMap(self, map)
+list &lt; int, int &gt; doSimulationStep(self, oldMap)
+int countAliveNeighbours(self, map, x, y)
+epurate(self)
+(int, int) findEmptyCell(self)
+floodfill(self, x, y, oldNb, newNb)
+style=autoresize
+layer=1
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>498</x>
+      <y>570</y>
+      <w>120</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>EndGameObserver
+--
+__/Callbacks/__
+onAvatarDied(self, avatar)
+onAvatarWon(self, avatar)
+style=autoresize
+layer=1
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>558</x>
+      <y>498</y>
+      <w>96</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Handle Game Over</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>468</x>
+      <y>414</y>
+      <w>42</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-
+&lt; </panel_attributes>
+    <additional_attributes>10.0;20.0;50.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>348</x>
+      <y>588</y>
+      <w>102</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Populates the environment with Walls, according to MapGenerator's array
+bg=yellow
+layer=1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>444</x>
+      <y>420</y>
+      <w>54</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>70.0;10.0;70.0;310.0;10.0;310.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>276</y>
+      <w>324</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;160.0;10.0;10.0;520.0;10.0</additional_attributes>
+  </element>
+</diagram>

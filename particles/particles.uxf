@@ -10,7 +10,8 @@
       <h>30</h>
     </coordinates>
     <panel_attributes>Core
-bg=green</panel_attributes>
+bg=green
+layer=-1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -22,7 +23,8 @@ bg=green</panel_attributes>
       <h>30</h>
     </coordinates>
     <panel_attributes>Agent
-bg=pink</panel_attributes>
+bg=pink
+layer=-1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -70,7 +72,7 @@ style=autoresize</panel_attributes>
     <panel_attributes>/Core/
 --
 bg=light_gray
-layer=1</panel_attributes>
+layer=0</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -82,7 +84,8 @@ layer=1</panel_attributes>
       <h>30</h>
     </coordinates>
     <panel_attributes>...
-bg=gray</panel_attributes>
+bg=gray
+layer=-1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

@@ -4,58 +4,71 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>650</x>
-      <y>200</y>
+      <x>420</x>
+      <y>260</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>Core
-bg=green</panel_attributes>
+bg=green
+layer=-1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>860</x>
-      <y>200</y>
+      <x>630</x>
+      <y>260</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>Agent
+bg=pink
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>750</x>
+      <y>400</y>
+      <w>170</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>Fish
+--
+breedTime : int
+currentBreedTime : int
+previousX : int
+previousY : int
+dead : bool
+--
+__/Overriden Methods/__
+update(self)
+decide(self)
+bool isDead(self)
+die(self)
+--
+breed(self)
+style=autoresize
+layer=1
 bg=pink</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1080</x>
-      <y>340</y>
-      <w>150</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>Fish
---
-bg=pink
-__/Overriden Methods/__
-update(self)
-decide(self):
-style=autoresize
-layer=1</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>610</x>
-      <y>340</y>
+      <x>280</x>
+      <y>400</y>
       <w>190</w>
-      <h>90</h>
+      <h>110</h>
     </coordinates>
     <panel_attributes>Main
 --
 bg=green
 __/Overriden Methods/__
 populate(self)
+update(self)
 setDefaultProperties(self)
 style=autoresize
 layer=1</panel_attributes>
@@ -64,45 +77,46 @@ layer=1</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>570</x>
-      <y>120</y>
+      <x>340</x>
+      <y>180</y>
       <w>500</w>
       <h>160</h>
     </coordinates>
     <panel_attributes>/Core/
 --
 bg=light_gray
-layer=1</panel_attributes>
+layer=0</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1010</x>
-      <y>200</y>
+      <x>780</x>
+      <y>260</y>
       <w>40</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>...
-bg=gray</panel_attributes>
+bg=gray
+layer=-1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>930</x>
-      <y>220</y>
-      <w>220</w>
+      <x>710</x>
+      <y>280</y>
+      <w>80</w>
       <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;200.0;120.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;120.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>690</x>
-      <y>220</y>
+      <x>420</x>
+      <y>280</y>
       <w>30</w>
       <h>140</h>
     </coordinates>
@@ -112,10 +126,10 @@ bg=gray</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>590</x>
-      <y>300</y>
+      <x>260</x>
+      <y>360</y>
       <w>680</w>
-      <h>170</h>
+      <h>330</h>
     </coordinates>
     <panel_attributes>/Wator/
 --
@@ -126,43 +140,43 @@ layer=0</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>860</x>
-      <y>340</y>
-      <w>150</w>
-      <h>90</h>
+      <x>500</x>
+      <y>400</y>
+      <w>230</w>
+      <h>280</h>
     </coordinates>
     <panel_attributes>Shark
 --
-bg=pink
+breedTime : int
+starveTime : int
+currentStarveTime : int 
+currentBreedTime : int 
+previousX : int
+previousY : int
+--
 __/Overriden Methods/__
 update(self)
-decide(self):
+decide(self)
+bool isDead(self)
+--
+(int, int) findFishDirection(self)
+starve(self)
+eat(self)
+breed(self)
 style=autoresize
-layer=1</panel_attributes>
+layer=1
+bg=pink</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>910</x>
-      <y>220</y>
-      <w>30</w>
+      <x>610</x>
+      <y>280</y>
+      <w>60</w>
       <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>830</x>
-      <y>490</y>
-      <w>360</w>
-      <h>160</h>
-    </coordinates>
-    <panel_attributes>bg=red
-TODO
-return types</panel_attributes>
-    <additional_attributes/>
+    <additional_attributes>40.0;10.0;10.0;120.0</additional_attributes>
   </element>
 </diagram>
