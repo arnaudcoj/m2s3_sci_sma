@@ -38,4 +38,4 @@ Le fichier properties est en format JSON, prendre exemple sur le fichier `proper
 ______________________________________________
 ##UML
 
-![uml](/avatar.png)
+![uml](avatar.png)
