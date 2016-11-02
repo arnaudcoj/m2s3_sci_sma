@@ -1,7 +1,11 @@
 # TP1 -- S.M.A Architecture générale classique
 ###### Tristan Camus & Arnaud Cojez
 ______________________________________________
+## Preview :
 
+![preview](preview.gif)
+
+______________________________________________
 ## Usage :
 
 `$ python3 Main.py [properties_file.json]`

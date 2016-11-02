@@ -1,7 +1,11 @@
 # TP3 -- S.M.A Avatars et motion planning
 ###### Tristan Camus & Arnaud Cojez
 ______________________________________________
+## Preview :
 
+![preview](preview.gif)
+
+______________________________________________
 ## Usage :
 
 `$ python3 Main.py [properties_file.json]`
