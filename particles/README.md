@@ -25,3 +25,8 @@ Le fichier properties est en format JSON, prendre exemple sur le fichier `proper
 - `refresh` : Nombre de ticks entre chaque rafraîchissement de l'affichage
 - `nbParticles` : Nombre de particules
 - `autoquit` : *true* pour fermer la fenêtre après exécution, *false* sinon
+
+______________________________________________
+##UML
+
+![uml](particles.png)
