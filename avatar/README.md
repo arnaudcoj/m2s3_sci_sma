@@ -34,3 +34,8 @@ Le fichier properties est en format JSON, prendre exemple sur le fichier `proper
 - `deathLimit` : Limite de mort de l'automate cellulaire
 - `chanceToStartAlive` : Probabilité qu'une case soit un mur à la première étape de l'automate cellulaire
 - `numberOfSteps` : Nombre d'étape de l'automate cellulaire
+
+______________________________________________
+##UML
+
+![uml](/avatar.png)
