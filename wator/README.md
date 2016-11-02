@@ -29,3 +29,8 @@ Le fichier properties est en format JSON, prendre exemple sur le fichier `proper
 - `sharkBreedTime` : Nombre de tours avant qu'un requin puisse se reproduire
 - `sharkStarveTime` : Nombre de tours qu'un requin ne meurt de faim
 - `fishBreedTime` : Nombre de tours avant qu'un poisson puisse se reproduire
+
+______________________________________________
+##UML
+
+![uml](wator.png)
